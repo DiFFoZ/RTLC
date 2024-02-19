@@ -1,0 +1,30 @@
+{
+	"SET-UP": "НАСТРОЙКИ",
+	"Adjust screen brightness until the symbol on the right is barely visible.": "Настройте яркость экрана так, чтобы символ справа был едва заметен.",
+	"Gamma/Brightness:": "Гамма/Яркость:",
+
+	"ENABLED": "ВКЛЮЧЕНО",
+	"DISABLED": "ВЫКЛЮЧЕНО",
+
+	"Input: ": "Ввод: ",
+	"MODE: Voice activation": "РЕЖИМ: Активация по голосу",
+	"MODE: Push to talk": "Режим: Активация по нажатию",
+
+	"This experience has been designed for in-game voice chat, so I recommend giving it a try.\n\n": "Для наилучшего игрового опыта был разработан внутриигрового голосовой чат, поэтому я рекомендую попробовать его.",
+	"> CONFIRM": "> ПОДТВЕРДИТЬ",
+	"  CONFIRM": "  ПОДТВЕРДИТЬ",
+
+	"Launch mode:": "РЕЖИМ ЗАПУСКА",
+	"LAUNCH MODE": "РЕЖИМ ЗАПУСКА",
+	"  Online": "  Онлайн",
+	"> Online": "> Онлайн",
+	"  LAN": "  LAN",
+	"> LAN": "> LAN",
+
+	"(Recommended)": "(Рекомендуется)",
+
+	"Your files could not be loaded and may be corrupted. To start the game, the files can be deleted.": "Ваши файлы не смогли загрузиться и могут быть повреждены. Вы можете удалить файлы, чтобы запустить игру.",
+	"Tip: This may occur due to an antivirus or other software halting the save file from being read.": "Совет: Это может произойти из-за того, что антивирус или другое программное обеспечение не дает прочитать файл сохранения.",
+	"[ Delete files and restart]": "[ Удалить файлы и перезапустить ]",
+	"The game will now close so you can restart it.": "Теперь игра закроется, и вы сможете запустить ее заново."
+}

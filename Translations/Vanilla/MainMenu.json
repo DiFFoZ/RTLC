@@ -1,0 +1,15 @@
+{
+	"      BG IG, A System-Act Ally\n      Copyright (C) 2084-2108, Halden Electronics Inc.\n\nCPU Type      :     BORSON 300 CPU at 2500 MHz\nMemory test  :      4521586K OK\n\nBoot Distributioner Application v0.04\nCopyright (C) 2107 Distributioner\n    Detecting Sting X ROM\n    Detecting Web LNV Extender\n    Detecting Heartbeats OK\n\n\nUTGF Device Listening...\n\nBody   ID   Neural   Device Class\n________________________________________\n\n2      52   Jo152       H515\n2      52   Sa5155      H515\n2      52   Bo75        H515\n2      52   Eri510      H515\n1      36   Ell567      H515\n1      36   Jos912      H515\n0\n": "      BG IG, Системный помощник\n      Копирайт (C) 2084-2108, Halden Electronics Inc.\n\nПроцессор    :     БОРСОН 300 ЦПУ, 2500 МГц\nТест памяти  :     4521586K OK\n\nПриложение для распределения загрузочных данных v0.04\nКопирайт (C) 2107 Distributioner\n    Обнаружено Sting X ROM\n    Обнаружено Web LNV Extender\n    Обнаружено Heartbeats OK\n\n\nУстройство UTGF в режиме прослушивания...\n\nКласс   ИД   Модуль   Устройство\n________________________________________\n\n2      52   Jo152       H515\n2      52   Sa5155      H515\n2      52   Bo75        H515\n2      52   Eri510      H515\n1      36   Ell567      H515\n1      36   Jos912      H515\n0\n",
+
+	"> Host": "> Создать сервер",
+	"> Join a crew": "> Список серверов",
+	"> Join LAN session": "> Присоединиться по LAN",
+	"> Settings": "> Настройки",
+	"> Credits": "> Благодарности",
+	"> Quit": "> Выйти",
+
+	"(Launched in LAN mode)": "(Режим LAN)",
+
+	"> Back": "> Назад",
+	"[ Back ]": "[ Назад ]"
+}
