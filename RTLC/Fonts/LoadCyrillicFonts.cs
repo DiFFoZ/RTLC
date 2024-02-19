@@ -34,10 +34,10 @@ internal static class LoadCyrillicFonts
         }
     }
 
-    [HarmonyPatch(typeof(TextMeshProUGUI), "LoadFontAsset")]
+    [HarmonyPatch(typeof(TMP_FontAsset), "Awake")]
     [HarmonyPrefix]
-    private static void LoadFontAsset(TextMeshProUGUI __instance)
+    private static void LoadFontAsset(TMP_FontAsset __instance)
     {
-        __instance.font.atlasPopulationMode = AtlasPopulationMode.Static;
+        __instance.atlasPopulationMode = AtlasPopulationMode.Static;
     }
 }
