@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using TMPro;
 
@@ -20,7 +22,7 @@ internal static class Patch_LoadStringWithTextMeshPro
         yield return AccessTools.Method(typeof(MenuManager), nameof(MenuManager.ConfirmHostButton));
         yield return AccessTools.Method(typeof(MenuManager), nameof(MenuManager.HostSetLobbyPublic));
         yield return AccessTools.Method(typeof(MenuManager), "DisplayLeaderboardSlots");
-        yield return AccessTools.Method(typeof(MenuManager), "GetLeaderboardForChallenge");
+        yield return AsyncMoveNext(typeof(MenuManager), "GetLeaderboardForChallenge"); // async
 
         yield return AccessTools.Method(typeof(ChallengeLeaderboardSlot), nameof(ChallengeLeaderboardSlot.SetSlotValues));
 
@@ -29,6 +31,32 @@ internal static class Patch_LoadStringWithTextMeshPro
         yield return AccessTools.Method(typeof(DeleteFileButton), nameof(DeleteFileButton.SetFileToDelete));
         yield return AccessTools.Method(typeof(SettingsOption), nameof(SettingsOption.ToggleEnabledImage));
         yield return AccessTools.Method(typeof(KepRemapPanel), nameof(KepRemapPanel.LoadKeybindsUI));
+
+        yield return AsyncMoveNext(typeof(SteamLobbyManager), nameof(SteamLobbyManager.LoadServerList)); // async
+    }
+
+    public static MethodInfo AsyncMoveNext(Type type, string name)
+    {
+        var method = AccessTools.Method(type, name);
+        if (method is null)
+        {
+            return null!;
+        }
+
+        var asyncAttribute = method.GetCustomAttribute<AsyncStateMachineAttribute>();
+        if (asyncAttribute is null)
+        {
+            return null!;
+        }
+
+        var asyncStateMachineType = asyncAttribute.StateMachineType;
+        var asyncMethodBody = AccessTools.DeclaredMethod(asyncStateMachineType, nameof(IAsyncStateMachine.MoveNext));
+        if (asyncMethodBody is null)
+        {
+            return null!;
+        }
+
+        return asyncMethodBody;
     }
 
     [HarmonyTranspiler]

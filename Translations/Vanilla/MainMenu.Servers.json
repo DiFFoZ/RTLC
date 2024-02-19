@@ -1,0 +1,17 @@
+{
+	"Loading server list...": "Загрузка списка серверов...",
+	"No available servers to join.": "Нет доступных серверов для подключения.",
+
+	"Servers": "Сервера",
+
+	"Enter server tag...": "Введите тег сервера...",
+
+	"With challenge moon": "С челлендж-луной",
+
+	"Sort: worldwide": "Сорт: весь мир",
+	"Sort: near": "Сорт: близко",
+    "Sort: far": "Сорт: далеко",
+
+    "[ Refresh ]": "[ Обновить ]",
+    "Join": "Войти"
+}
