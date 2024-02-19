@@ -1,0 +1,22 @@
+{
+	"Server name:": "Имя сервера:",
+	"Name your server...": "Назовите свой сервер...",
+	"Enter a tag...": "Введите тег...",
+
+	"Public": "Публичный",
+	"Friends-only": "Только друзья",
+
+	"[ Confirm ]": "[ Создать ]",
+
+	"Save File": "Сохранения",
+	"r:^File ([0-9]+)$": "Файл {Matches[1]}",
+
+	"Do you want to delete File {0}?": "Вы точно хотите удалить Файл \\{0\\}?",
+
+	"Delete": "Удалить",
+	"Go back": "Отменить",
+
+	"This is the weekly challenge moon. You have one day to make as much profit as possible.": "Это еженедельная челлендж-луна.\nУ вас есть один день и одна попытка получить как можно больше прибыли.",
+	"PUBLIC means your game will be visible on the server list for all to see.": "Публичный: ваша игра будет видна всем в списке серверов.",
+    "PRIVATE means you must send invites through Steam for players to join.": "Только друзья: вы должны отправить приглашение через Steam, чтобы игроки могли присоединиться.",
+}

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using RTLC.API;
 using SmartFormat;
@@ -9,6 +12,7 @@ namespace RTLC;
 internal static class Translation
 {
     private static readonly Dictionary<string, string> s_Translations = [];
+    private static readonly Dictionary<Regex, string> s_RegexTranslations = [];
 
     private static Dictionary<string, string> s_UntranslatedCache = [];
     private static string s_UntranslatedFilePath = string.Empty;
@@ -36,6 +40,12 @@ internal static class Translation
             var dict = JsonConvert.DeserializeObject<IDictionary<string, string>>(File.ReadAllText(translationFile))!;
             foreach (var kvp in dict)
             {
+                if (kvp.Key.StartsWith("r:"))
+                {
+                    s_RegexTranslations.Add(new Regex(kvp.Key[2..]), kvp.Value);
+                    continue;
+                }
+
                 if (!s_Translations.ContainsKey(kvp.Key))
                     s_Translations[kvp.Key] = kvp.Value;
             }
@@ -52,6 +62,19 @@ internal static class Translation
         if (s_Translations.TryGetValue(key, out var translation))
         {
             return Smart.Format(translation, new { Original = key, Translations = s_Translations });
+        }
+
+        foreach (var kvp in s_RegexTranslations)
+        {
+            var match = kvp.Key.Match(key);
+            if (!match.Success)
+            {
+                continue;
+            }
+
+            var matchingGroupValues = (from Group grp in match.Groups select grp.Value).ToList();
+
+            return Smart.Format(kvp.Value, new { Original = key, Translations = s_Translations, Matches = matchingGroupValues });
         }
 
         AddUntranslatedText(key);
