@@ -24,7 +24,11 @@ internal static class Patch_LoadStringWithTextMeshPro
 
         yield return AccessTools.Method(typeof(ChallengeLeaderboardSlot), nameof(ChallengeLeaderboardSlot.SetSlotValues));
 
+        yield return AccessTools.Method(typeof(IngamePlayerSettings), "SetChangesNotAppliedTextVisible");
+
         yield return AccessTools.Method(typeof(DeleteFileButton), nameof(DeleteFileButton.SetFileToDelete));
+        yield return AccessTools.Method(typeof(SettingsOption), nameof(SettingsOption.ToggleEnabledImage));
+        yield return AccessTools.Method(typeof(KepRemapPanel), nameof(KepRemapPanel.LoadKeybindsUI));
     }
 
     [HarmonyTranspiler]

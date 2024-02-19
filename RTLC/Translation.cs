@@ -35,7 +35,7 @@ internal static class Translation
 
     internal static string GetLocalizedText(string key)
     {
-        if (string.IsNullOrWhiteSpace(key) || key.Length < 3)
+        if (string.IsNullOrWhiteSpace(key) || key.Length < 4)
         {
             return key;
         }

@@ -2,6 +2,7 @@
 using RTLC.API;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace RTLC.Translations;
@@ -24,9 +25,21 @@ internal static class ReplaceTextOnSceneLoaded
             return;
         }
 
-        foreach (var text in Object.FindObjectsOfType<TextMeshProUGUI>(true))
+        foreach (var ui in Object.FindObjectsOfType<UIBehaviour>(true))
         {
-            text.text = Translation.GetLocalizedText(text.text);
+            if (ui is TextMeshProUGUI text)
+            {
+                text.text = Translation.GetLocalizedText(text.text);
+                continue;
+            }
+
+            if (ui is TMP_Dropdown dropdown)
+            {
+                foreach (var option in dropdown.options)
+                {
+                    option.text = Translation.GetLocalizedText(option.text);
+                }
+            }
         }
     }
 }
