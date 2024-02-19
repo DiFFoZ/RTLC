@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using DunGen;
 using Newtonsoft.Json;
 using RTLC.API;
+using RTLC.SmartFormat;
 using SmartFormat;
 using SmartFormat.Core.Settings;
 
@@ -13,9 +16,11 @@ internal static class Translation
 {
     private static readonly Dictionary<string, string> s_Translations = [];
     private static readonly Dictionary<Regex, string> s_RegexTranslations = [];
+    private static readonly CultureInfo s_RussianCultureInfo = new("ru-RU");
 
     private static Dictionary<string, string> s_UntranslatedCache = [];
     private static string s_UntranslatedFilePath = string.Empty;
+    private static readonly SmartFormatter s_SmartFormatter = Smart.CreateDefaultSmartFormat().AddExtensions(new StringToNumberSource());
 
     [InitializeOnAwake]
     public static void LoadTranslation()
@@ -54,14 +59,19 @@ internal static class Translation
 
     internal static string GetLocalizedText(string key)
     {
-        if (string.IsNullOrWhiteSpace(key) || key.Length < 4)
+        if (ShouldIgnoreTranslation(key))
         {
             return key;
         }
 
         if (s_Translations.TryGetValue(key, out var translation))
         {
-            return Smart.Format(translation, new { Original = key, Translations = s_Translations });
+            return s_SmartFormatter.Format(s_RussianCultureInfo, translation, new { Original = key, Translations = s_Translations });
+        }
+
+        if (s_UntranslatedCache.ContainsKey(key))
+        {
+            return key;
         }
 
         foreach (var kvp in s_RegexTranslations)
@@ -74,7 +84,7 @@ internal static class Translation
 
             var matchingGroupValues = (from Group grp in match.Groups select grp.Value).ToList();
 
-            return Smart.Format(kvp.Value, new { Original = key, Translations = s_Translations, Matches = matchingGroupValues });
+            return s_SmartFormatter.Format(s_RussianCultureInfo, kvp.Value, new { Original = key, Translations = s_Translations, Matches = matchingGroupValues });
         }
 
         AddUntranslatedText(key);
@@ -88,9 +98,42 @@ internal static class Translation
             return;
         }
 
-        s_Translations[text] = text;
         s_UntranslatedCache[text] = text;
 
         File.WriteAllText(s_UntranslatedFilePath, JsonConvert.SerializeObject(s_UntranslatedCache));
+    }
+
+    private const char c_LineFeedChar = '\n';
+    private const char c_CarriageReturnChar = '\r';
+    private const char c_EmptySpaceChar = (char)0x200b;
+    private const char c_SpaceChar = ' ';
+
+    private static bool ShouldIgnoreTranslation(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text) || text.Length < 4)
+        {
+            return true;
+        }
+
+        var @char = text[0];
+        var errorCharCount = 0;
+
+        foreach (var c in text.AsSpan())
+        {
+            if (c == c_LineFeedChar
+                || c == c_CarriageReturnChar
+                || c == c_EmptySpaceChar
+                || c == c_SpaceChar
+                || c == @char
+                || (c >= (char)0x0400 && c <= (char)0x04ff))
+            {
+                errorCharCount++;
+                continue;
+            }
+
+            break;
+        }
+
+        return errorCharCount == text.Length;
     }
 }

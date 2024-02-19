@@ -1,6 +1,54 @@
 {
-	"Inventory full!": "Инвентарь полный!",
-    "(Cannot hold until ship has landed)": "(Невозможно взять, пока корабль не приземлится)",
+    "SYSTEMS ONLINE": "СИСТЕМЫ АКТИВНЫ",
+    "[LIFE SUPPORT: OFFLINE]": "[СИСТЕМЫ: ОТКЛЮЧЕНЫ]",
+    "CRITICAL INJURY": "КРИТИЧЕСКАЯ ТРАВМА",
+
+    "VISIBILITY LOW!\n\nSteam leak detected in area": "НИЗКАЯ ВИДИМОСТЬ!\n\nОбнаружена утечка пара",
+    "RECEIVING SIGNAL": "ПОЛУЧАЕМ СИГНАЛ",
+
+    "r:^([0-9]+) Days? Left$": "{Matches[1].ToNumber:plural:Осталось {} Дней|Остался {} День|Осталось {} Дня}",
+
+    "Open : [LMB]": "Открыть : [E]",
     "Grab : [E]": "Взять : [E]",
-    "[Hands full]": "[Руки заняты]"
+    "Grab: [E]": "Взять: [E]",
+    "Open door : [LMB]": "Открыть дверь : [E]",
+    "Close door : [LMB]": "Закрыть дверь : [E]",
+    "Access terminal : [LMB]": "Войти в терминал : [E]",
+    "Turn on/off : [LMB]": "Включить/выключить: [E]",
+    "Switch camera : [LMB]": "Переключить камеру: [E]",
+    "Start game : [LMB]": "Запустить игру: [E]",
+    "Switch lights : [LMB]": "Вкл/Выкл свет: [E]",
+    "Charge item : [LMB]": "Зарядить предмет : [E]",
+    "Start ship : [LMB]": "Запустить корабль : [E]",
+    "Exit : [LMB]": "Выйти : [E]",
+    "Climb : [LMB]": "Подняться : [E]",
+    "Let go : [LMB]": "Отпустить : [E]",
+    "Use door : [LMB]": "Использовать дверь : [E]",
+
+    "Inventory full!": "Инвентарь полный!",
+    "[Hands full]": "[Руки заняты]",
+    "(Cannot hold until ship has landed)": "(Невозможно взять, пока корабль не приземлится)",
+    "(Requires battery-powered item)": "(Нужен предмет с аккумулятором)",
+    "Locked": "Закрыто",
+    "[Wait for ship to land]": "[Подождите, пока корабль приземлится]",
+
+    "[Nothing to store]": "[Нечего положить]",
+    "Store item : [LMB]": "Положить предмет : [E]",
+    
+    "Typing...": "Ввод текста...",
+    "Press \"/\" to talk.": "Открыть чат: \"/\".",
+
+    "Voice volume": "Громкость голоса",
+
+    "TOTAL:": "ВСЕГО:",
+    "r:^Value: $([0-9]+)$": "Цена: ${Matches[1]}",
+
+    "Drop ": "Выбросить ",
+    "Walk : [W/A/S/D]": "Передвижение : [W/A/S/D]",
+    "Scan : [RMB]": "Сканирование : [ПКМ]",
+    "Sprint: [Shift]": "Бег: [Shift]",
+    "Quit terminal : [TAB]": "Выйти из терминала : [TAB]",
+    "Toggle music : [RMB]": "Переключить музыку : [ПКМ]",
+
+    "Confirm: [V]   |   Rotate: [R]   |   Store: [X]": "Подтвердить: [B]   | Вращать: [R]  |  На склад: [X]"
 }

@@ -17,6 +17,8 @@ internal static class Patch_LoadStringBasic
         yield return AccessTools.Method(typeof(IngamePlayerSettings), nameof(IngamePlayerSettings.SetMicPushToTalk));
         yield return AccessTools.Method(typeof(IngamePlayerSettings), nameof(IngamePlayerSettings.SwitchMicrophoneSetting));
         yield return AccessTools.Method(typeof(IngamePlayerSettings), nameof(IngamePlayerSettings.UpdateMicPushToTalkButton));
+
+        yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.ChangeControlTipMultiple));
     }
 
     [HarmonyTranspiler]

@@ -13,6 +13,7 @@
 
     "> Change keybinds": "> Изменить управление",
     "> Set to defaults": "> Настройки по умолчанию",
+    "Waiting for input": "Нажмите на кнопку",
 
     "REMAP CONTROLS": "НАСТРОЙКИ УПРАВЛЕНИЯ",
     "REBIND CONTROLLERS": "НАСТРОЙКИ УПРАВЛЕНИЯ (ГЕЙМПАД)",
@@ -52,10 +53,6 @@
     "Frame rate cap:": "Частота кадров:",
     "Use monitor (V-Sync)": "V-Sync",
     "Uncapped": "Неограниченно",
-    "144 FPS": "144 FPS",
-    "120 FPS": "120 FPS",
-    "60 FPS": "60 FPS",
-    "30 FPS": "30 FPS",
     "Display mode:": "Режим экрана:",
     "Fullscreen": "Полноэкранный",
     "Windowed fullscreen": "Оконный без рамок",

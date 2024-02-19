@@ -1,0 +1,35 @@
+{
+	"Welcome!": "Добро пожаловать!",
+	"Right-click to scan objects in the ship for info.": "Щелкните ПКМ, чтобы просканировать объекты на корабле на предмет информации.",
+	
+	"TIP!: Hold [RMB] to vote for the autopilot ship to leave early.": "Совет: Удерживайте [ПКМ], чтобы проголосовать за досрочное отбытие корабля с автопилотом.",
+	
+	"Items missed!": "Предметы потеряны!",
+	"The vehicle returned with your purchased items. Our delivery fee cannot be refunded.": "Корабль улетел с вашими вещами. Возраст средств не предусмотрен.",
+	
+	"To read the manual:": "Чтобы прочесть руководство:",
+	"Press Z to inspect closely. Press Q and E to flip the pages.": "Нажмите Z, чтобы приблизить. Нажмите Q и E, чтобы перевернуть страницы.",
+	
+	"TIP:": "Совет",
+	"Use the ship computer terminal to access secure doors.": "Используйте терминал, чтобы получить доступ к закрытым дверям.",
+	
+	"HALT!": "СТОЙТЕ!",
+	"You have 0 days left to meet the quota. Use the terminal to route to the company and sell.": "У вас осталось 0 дней, чтобы выполнить квоту. Используйте терминал, чтобы направиться в компанию и продать лом.",
+	
+	"Item stored!": "Обьект на складе!",
+	"You can see stored items in the terminal by using command 'STORAGE'": "Вы можете просмотреть сохраненные объекты в терминале, используя команду 'STORAGE'.",
+	
+	"Tip": "Совет",
+	"Press B to move and place objects in the ship, E to cancel.": "Нажмите B, чтобы переместить и разместить объекты в корабле, E для отмены.",
+	
+	"Got scrap!": "Лом получен!",
+	"To sell, use the terminal to route the ship to the company building.": "Для продажи используйте терминал, чтобы направить корабль к зданию компании.",
+	
+	"ALERT!": "ТРЕВОГА!",
+	"Drop your metallic items now! A static charge has been detected. You have seconds left to live.": "Бросьте металлические предметы немедленно! Обнаружен статический заряд. У вас осталось всего несколько секунд, чтобы остаться в живых.",
+	
+	"Weather alert!": "Опасные условия!",
+	"You have landed in an eclipse. Exercise caution!": "Вы приземлились во время затмения. Будьте осторожны!",
+	
+	"The entrace appears to be blocked.": "Вход, кажется, заблокирован.",
+}

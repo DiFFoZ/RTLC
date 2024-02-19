@@ -33,6 +33,8 @@ internal static class Patch_LoadStringWithTextMeshPro
         yield return AccessTools.Method(typeof(KepRemapPanel), nameof(KepRemapPanel.LoadKeybindsUI));
 
         yield return AsyncMoveNext(typeof(SteamLobbyManager), nameof(SteamLobbyManager.LoadServerList)); // async
+
+        yield return AccessTools.Method(typeof(TimeOfDay), nameof(TimeOfDay.UpdateProfitQuotaCurrentTime));
     }
 
     public static MethodInfo AsyncMoveNext(Type type, string name)
@@ -111,11 +113,18 @@ internal static class Patch_LoadStringWithTextMeshPro
                 || method.Name.Equals("Concat"))
             {
                 isFormating = true;
-                break;
+                matcher.Advance(1);
+                continue;
             }
 
             if (method == s_TMPText_TextSetter)
             {
+                break;
+            }
+
+            if (isFormating)
+            {
+                isFormating = false;
                 break;
             }
 

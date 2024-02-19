@@ -23,7 +23,11 @@
 	"Discard": "Отменить",
 	"Confirm": "Подтвердить",
 
+	"Credits": "Благодарности",
 
+	"Loading...": "Загрузка...",
+
+	"An error occured!": "Произошла ошибка!",
 	"Connecting to server...": "Подключение к серверу...",
     "Connecting to host...": "Подключение к хосту...",
     "Connection failed. Try again?": "Не удалось подключиться. Попробовать еще раз?",
