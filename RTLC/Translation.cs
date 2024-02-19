@@ -2,6 +2,8 @@
 using System.IO;
 using Newtonsoft.Json;
 using RTLC.API;
+using SmartFormat;
+using SmartFormat.Core.Settings;
 
 namespace RTLC;
 internal static class Translation
@@ -14,6 +16,8 @@ internal static class Translation
     [InitializeOnAwake]
     public static void LoadTranslation()
     {
+        SmartSettings.IsThreadSafeMode = false;
+
         var directory = Path.Combine(RTLCPlugin.Instance.WorkingDirectory, "Translations");
         s_UntranslatedFilePath = Path.Combine(directory, "Untranslated.json");
 
@@ -24,6 +28,11 @@ internal static class Translation
 
         foreach (var translationFile in Directory.EnumerateFiles(directory, "*.json", SearchOption.AllDirectories))
         {
+            if (translationFile == s_UntranslatedFilePath)
+            {
+                continue;
+            }
+
             var dict = JsonConvert.DeserializeObject<IDictionary<string, string>>(File.ReadAllText(translationFile))!;
             foreach (var kvp in dict)
             {
@@ -42,10 +51,8 @@ internal static class Translation
 
         if (s_Translations.TryGetValue(key, out var translation))
         {
-            return translation;
+            return Smart.Format(translation, new { Original = key, Translations = s_Translations });
         }
-
-        RTLCPlugin.Instance.Logger.LogWarning("Failed to find localization for: " + key.Replace("\n", @"\n"));
 
         AddUntranslatedText(key);
         return key;
