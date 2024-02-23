@@ -14,6 +14,8 @@ internal class RTLCConfiguration
 
     public void Initialize()
     {
-        m_AutoClearUntranslatedOnAwake = (RTLCPlugin.Instance as BaseUnityPlugin).Config.Bind("General", "ClearUntranslatedOnAwake", true);
+        var config = (RTLCPlugin.Instance as BaseUnityPlugin).Config;
+
+        m_AutoClearUntranslatedOnAwake = config.Bind("General", "ClearUntranslatedOnAwake", true);
     }
 }
