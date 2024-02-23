@@ -1,0 +1,82 @@
+{
+    "__macros": "",
+    "Terminal_Confirmation": "\n\n\nВведите \"CONFIRM\"(Принять) или \"DENY\"(Отменить)\n\n\n",
+
+    "WelcomeNode": "BG IG, Системный помощник.\nКопирайт (C) 2084-2108, Halden Electronics Inc.\nПредоставлено компанией.\n\n\n\nБиос для FORTUNE-9 87.7 Система 10 МГц\n\nТекущая дата - Вторник 3-7-2532\nТекущее время - 8:03:32.15\n\nПожалуйста, введите любимое животное: ",
+    "WelcomeNode2": "\nПожалуйста, опишите свою роль в команде: ",
+    "Start": "Добро пожаловать в FORTUNE-9 ОС\n\tПредоставлено компанией\n\n[currentDayRussian].\n\nВведите \"Help\" для получения списка команд.\n\n\n\n\n",
+
+    "r:^You have requested to order ([\\w\\d\\s.-]+) ?\\n?(Amount: \\[variableAmount\\]\\. \\n)?Total cost of items?: \\[totalCost\\]\\.\\n\\nPlease CONFIRM or DENY\\.\\n\\n$": "Вы запросили\\: {Matches[0].Translate}\n{Matches[1].Length:cond:!=0?Количество\\: [variableAmount].\n|}Стоимость\\: [totalCost].{\"Terminal_Confirmation\".Translate}",
+
+    "r:^Ordered (\\[variableAmount\\] )?([\\w\\d\\s!.-]+) Your new balance is \\[playerCredits\\]\\.(\\n+.+\\n\\n.*)?$": "Вы заказали\\: {Matches[1]}{Matches[0].Length:cond:!=0? x[variableAmount]|}. Оставшиеся кредиты: [playerCredits].{Matches[2].Translate}",
+    "\n\nOur contractors enjoy fast, free shipping while on the job! Any purchased items will arrive hourly at your approximate location.\n\n": "\n\nНаши сотрудники пользуются быстрой и бесплатной доставкой во время работы! Все приобретённые товары будут доставлены в течение часа до вашего приблизительного местоположения.\n\n",
+    "key:Terminal_RearrangeInfo:\nPress [B] to rearrange objects in your ship and [V] to confirm.\n": "\nНажмите [B], чтобы переставить объекты на корабле, и [V], чтобы подтвердить.\n",
+    "\nPress [B] to rearrange objects in your ship and [V] to confirm.\n\n": "\nНажмите [B], чтобы переставить объекты на корабле, и [V], чтобы подтвердить.\n\n",
+    "\nPress [B] to rearrange objects in your ship and [V] to confirm.\n\nHold the cord to activate the loud horn.": "{\"Terminal_RearrangeInfo\".Translate}\nДержите шнур, чтобы вызвать громкий гудок.\n",
+    "\nPress [B] to rearrange objects in your ship and [V] to confirm.\n\nPress the button and step onto the inverse teleporter while it activates.": "{\"Terminal_RearrangeInfo\".Translate}\nНажмите на кнопку и, пока активируется инверсный телепорт, зайдите в него.\n",
+    "\nPress the button to activate the teleporter. It will teleport whoever is currently being monitored on the ship's radar. You will not be able to keep any of your held items through the teleport. It takes about 10 seconds to recharge.\n\nPress [B] to rearrange objects in your ship and [V] to confirm.": "\nНажмите на кнопку, чтобы активировать телепортатор. Он телепортирует того, кто в данный момент находится под наблюдением радара корабля. Во время телепортации вы не сможете сохранить ни один из имеющихся у вас предметов. Перезарядка занимает около 10 секунд.\n{\"Terminal_RearrangeInfo\".Translate}",
+
+    "CancelPurchase": "Заказ отменен.\n\n",
+    "CancelRoute": "Вы отменили заказ.\n\n\n",
+
+    "Price:": "Цена:",
+
+    "0_StoreHub": "{Original:ismatches(\\(.+\\n+\\)): {m:list:{Translate}|}| {Original}}",
+    "Welcome to the Company store. \n": "Добро пожаловать в магазин компании. \n",
+    "Use words BUY and INFO on any item. \n": "Используйте слова \"BUY\" и \"INFO\" на любом товаре. \n",
+    "Order tools in bulk by typing a number.\n": "Заказывайте инструменты оптом, набрав номер.\n",
+    "[buyableItemsList]\n\n": "[buyableItemsList]\n\n",
+    "SHIP UPGRADES:\n": "ОБНОВЛЕНИЕ КОРАБЛЯ:\n",
+    "r:^([^/]+)(\\/+ +)*(Price:)? (\\$[0-9]+)\\\\n$": "{Matches[0]}{Matches[1]}{Matches[2].Translate} {Matches[3]}\n",
+    "r:^([^/]+)(\\/+ +)*(Price:)? (\\$[0-9]+)\\\\n\\\\n$": "{Matches[0]}{Matches[1]}{Matches[2].Translate} {Matches[3]}\n\n",
+    "The selection of ship decor rotates per-quota. Be sure to check back next week:\n": "Каталог корабельного декора меняется каждую квоту. Обязательно загляните на следующей неделе:\n",
+    "[unlockablesSelectionList]\n\n": "[unlockablesSelectionList]\n\n",
+    
+    "ViewInsideShipCam 1": "Переключение камеры.\n\n",
+    "MoonsCatalogue": "Добро пожаловать в каталог экзолун.\nЧтобы направить автопилот к луне, введите \"ROUTE\".\nЧтобы узнать информацию о любой луне, введите \"INFO\".\n____________________________\n\n* The Company building   //   Buying at [companyBuyingPercent].\n\n* Experimentation [planetTime]\n* Assurance [planetTime]\n* Vow [planetTime]\n\n* Offense [planetTime]\n* March [planetTime]\n\n* Rend [planetTime]\n* Dine [planetTime]\n* Titan [planetTime]\n\n",
+
+    "CompanyMoonroute": "Компания скупает за [companyBuyingPercent]. \n\nХотите направить автопилот к зданию Компании?{\"Terminal_Confirmation\".Translate}",
+    "CompanyMoonRouteConfirm": "Направление автопилота к зданию Компании.\n\nПриятного полёта.\n\n",
+
+    "r:^The cost to route to (.+?) is \\[totalCost\\]\\. It is \\\\ncurrently \\[currentPlanetTime\\] on this moon\\.\\\\n\\\\nPlease CONFIRM or DENY\\.\\\\n\\\\n\\\\n$": "Стоимость маршрута до {Matches[0]} составляет [totalCost]. На этой луне сейчас [currentPlanetTime].\n\nВведите \"CONFIRM\" или \"DENY\".\n\n\n",
+    "r:^Routing autopilot to (.+?)\\. ?\\\\nYour new balance is \\[playerCredits\\]\\.\\\\n\\\\nPlease enjoy your flight\\.\\\\n\\\\n$": "Направление автопилота на {Matches[0]}.\nОставшиеся кредиты [playerCredits].\n\nПриятного полёта.\n\n",
+    "r:^Routing autopilot to (.+?)\\. ?\\\\nYour new balance is \\[playerCredits\\]\\.\\\\n\\\\nGood luck\\.\\\\n\\\\n$": "Направление автопилота на {Matches[0]}.\nОставшиеся кредиты [playerCredits].\n\nnУдачи.\n\n",
+
+    "SuitsList": "Этот список меняет после квоты. Обязательно загляните на следующей неделе!\n____________________________\n\n[unlockablesSelectionList]\n",
+    "ShipCosmeticsList": "Чтобы заказать любой товар, введите \"BUY\".\n____________________________\n\n* Teleporter      //    Цена: $400\n\n\n\n\n\n",
+    "ItemsInStorage": "При перемещении объектов с помощью [B] вы можете нажать [X], чтобы отправить их на склад. Здесь вы можете вызвать их обратно.\n\nСписок объектов на складе:\n\n[storedUnlockablesList]\n\n",
+    
+    "ScanInfo": "[scanForItems]\n",
+    "SwitchRadarCamPlayer 1": "Переключение камеры.\n\n",
+    "ConfirmEject": "Вы хотите катапультировать всех членов экипажа, включая себя? Вы должны находиться на орбите вокруг луны.\n\nВведите \"CONFIRM\"(Принять) или \"DENY\"(Отмена).\n\n",
+    "EjectPlayers": "Катапультирование экипажа.\n\n",
+    "DenyEject": "Катапультирование отменено.\n\n",
+    
+    "CannotAfford": "Вы не можете позволить себе эти предметы!\nВаш баланс составляет [playerCredits]. Общая стоимость этих предметов составляет [totalCost].\n\n",
+    "CouldNotReroute": "В настоящее время невозможно проложить маршрут для корабля. Он должен находиться на орбите вокруг луны, чтобы автопилот мог проложить маршрут.\nДля выхода на орбиту используйте главный рычаг на главной панеле.\n\n\n\n",
+    "TooManyItems": "Автомобиль для доставки не может вмещать более 12 предметов\nза раз. Пожалуйста, забирите свои вещи, когда они прибудут на место!\n\n\n",
+    "GeneralError": "Произошла ошибка! Попробуйте еще раз.\n\n",
+    "NoCreatureData": "Об этом существе не было собрано никаких данных. \nТребуется сканирование.\n\n",
+    "MustBeInOrbit": "Корабль должен быть на орбите, чтобы купить украшения.\n\n",
+    "AlreadyOnThisPlanet": "Корабль уже находится на орбите этой луны!\n\n",
+    "NoUnlockedStoryLogs": "[ДАННЫЕ ПОВРЕЖДЕНЫ ИЛИ ПЕРЕЗАПИСАНЫ]\n\n",
+    
+    "AlreadyUnlocked": "Оно уже разблокирован для вашего корабля!",
+    "ShipInMotion": "Корабль не может улетать или приземляться!\n\n",
+    "NotInStock": "Этого товара нет в наличии!\n\n",
+    "ReturnedFromStorage": "Возвращен объект со склада!",
+    "LockedForDemo": "This is locked from the demo version!\n\n",
+    "EnteredCode": "Введен код вещания.\n",
+    "SwitchedCam": "Переключение камеры.\n\n",
+    "PingedRadarBooster": "Вызывали усилитель радара.\n\n",
+    "SendSignalTranslator": "Сообщение транслировано.\n\n",
+    "FlashedRadarBooster": "Произведена вспышка радар-усилителя.\n\n",
+    "CantRouteInChallenge": "Вы выбрали файл сохранения Челледж-луны. Вы не можете проложить маршрут на другую луну во время испытания.",
+
+    "ParserError1": "[Команда была предоставлена без указания какого-либо действия.]\n\n",
+    "ParserError2": "[В действии не было объекта, возможно слово было набрано неправильно, или его не существует.]\n\n",
+    "ParserError3": "[Это действие несовместимо с данным объектом.]\n\n",
+
+    "__useless": "",
+    "ch_ResetCredits": "Reset credits to 200. ",
+}

@@ -1,0 +1,33 @@
+{
+	"OtherCommands": "{Original:ismatches(\\(?\\:Other commands\\:\\n\\n\\)?\\(>.*\\n\\)?\\(.+\\n+\\)):Другие команды\\:\n\n{m:list:{Translate}|}|{}}",
+
+    ">VIEW MONITOR\n": ">VIEW MONITOR\n",
+    "To toggle on AND off the main monitor's map cam\n\n": "Вкл/Выкл камеру основного монитора.\n\n",
+
+    ">SWITCH [Player name]\n": ">SWITCH [имя игрока]\n",
+    "To switch view to a player on the main monitor\n\n": "Переключить камеру на другого игрока.\n\n",
+
+    ">PING [Radar booster name]\n": ">PING [имя радар-усилителя]\n",
+    "To make a radar booster play a noise.\n\n": "Заставить радар-усилитель издать звук.\n\n",
+
+    ">TRANSMIT [message]\n": ">TRANSMIT [сообщение]\n",
+    "To transmit a message with the signal translator\n\n": "Передать сообщение с помощью транслятора сигналов.\n\n",
+
+    ">SCAN\n": ">SCAN\n",
+    "To scan for the number of items left on the current planet.\n\n\n": "Просканировать количество лома на текущей луне.\n\n\n",
+    "To scan for the number of items left on the current planet.\n\n": "Просканировать количество лома на текущей луне.\n\n",
+
+    "HelpCommands": "{Original:ismatches(\\(>.*\\n\\)?\\(.+\\n+\\)):{m:list:{Translate}|}|{}}",
+    "To see the list of moons the autopilot can route to.\n\n": "Узнать список лун, к которым автопилот может проложить маршрут\n\n",
+    "To see the company store's selection of useful items.\n\n": "Фирменный магазин компании.\n\n",
+    "To see the list of wildlife on record.\n\n": "Записи о существах, добавленные в базу.\n\n",
+    "To access objects placed into storage.\n\n": "Получить доступ к объектам, помещенным на склад.\n\n",
+    "To see the list of other commands\n\n": "Увидеть список других команд.\n\n",
+    "[numberOfItemsOnRoute]\n": "[numberOfItemsOnRoute]\n",
+
+    ">MOONS\n": ">MOONS\n",
+    ">STORE\n": ">STORE\n",
+    ">BESTIARY\n": ">BESTIARY\n",
+    ">STORAGE\n": ">STORAGE\n",
+    ">OTHER\n": ">OTHER\n",
+}

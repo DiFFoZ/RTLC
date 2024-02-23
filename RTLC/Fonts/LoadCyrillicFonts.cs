@@ -30,6 +30,7 @@ internal static class LoadCyrillicFonts
             if (font.name.Equals("eduline_font"))
             {
                 font.fallbackFontAssetTable.Add(transmitFont);
+                return;
             }
         }
     }

@@ -37,7 +37,7 @@ internal static class Patch_HUDManager_UpdateScanNodes
         while (cursor.TryGotoNext(c => c.MatchLdfld(headerTextField) || c.MatchLdfld(subTextField)))
         {
             cursor.Index++;
-            cursor.Emit(OpCodes.Call, AccessTools.Method(typeof(Translation), nameof(Translation.GetLocalizedText)));
+            cursor.Emit(OpCodes.Call, SymbolExtensions.GetMethodInfo(() => Translation.GetLocalizedText("")));
         }
     }
 }

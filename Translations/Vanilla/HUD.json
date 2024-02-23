@@ -5,8 +5,9 @@
 
     "VISIBILITY LOW!\n\nSteam leak detected in area": "НИЗКАЯ ВИДИМОСТЬ!\n\nОбнаружена утечка пара",
     "RECEIVING SIGNAL": "ПОЛУЧАЕМ СИГНАЛ",
+    "HANDS FULL": "РУКИ ЗАНЯТЫ",
 
-    "r:^([0-9]+) Days? Left$": "{Matches[1].ToNumber:plural:Осталось {} Дней|Остался {} День|Осталось {} Дня}",
+    "r:^([0-9]+) Days? Left$": "{Matches[0].ToNumber:plural:Осталось {} Дней|Остался {} День|Осталось {} Дня}",
 
     "Open : [LMB]": "Открыть : [E]",
     "Grab : [E]": "Взять : [E]",
@@ -41,7 +42,7 @@
     "Voice volume": "Громкость голоса",
 
     "TOTAL:": "ВСЕГО:",
-    "r:^Value: $([0-9]+)$": "Цена: ${Matches[1]}",
+    "r:^Value: $([0-9]+)$": "Цена: ${Matches[0]}",
 
     "Drop ": "Выбросить ",
     "Walk : [W/A/S/D]": "Передвижение : [W/A/S/D]",

@@ -18,6 +18,8 @@ public class RTLCPlugin : BaseUnityPlugin
 
     internal new ManualLogSource Logger { get; private set; } = null!;
 
+    internal new RTLCConfiguration Config { get; private set; } = null!;
+
     internal string WorkingDirectory { get; private set; } = null!;
 
     private Harmony? m_Harmony;
@@ -27,6 +29,9 @@ public class RTLCPlugin : BaseUnityPlugin
         Instance = this;
         Logger = base.Logger;
         WorkingDirectory = new FileInfo(Info.Location).DirectoryName;
+
+        Config = new RTLCConfiguration();
+        Config.Initialize();
 
         foreach (var method in typeof(RTLCPlugin)
             .Assembly
@@ -38,7 +43,7 @@ public class RTLCPlugin : BaseUnityPlugin
             Logger.LogInfo($"Initialized {method.DeclaringType.Namespace}.{method.Name}");
         }
 
-        HarmonyFileLog.Enabled = true;
+        // HarmonyFileLog.Enabled = true;
 
         m_Harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
         m_Harmony.PatchAll(typeof(RTLCPlugin).Assembly);

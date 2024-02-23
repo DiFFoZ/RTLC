@@ -15,6 +15,9 @@ internal static class Patch_HUDManager_Tips
     [HarmonyPrefix]
     public static void ChangeControlTipMultiple(string[] allLines)
     {
+        if (allLines == null)
+            return;
+
         for (var i = 0; i < allLines.Length; i++)
         {
             allLines[i] = Translation.GetLocalizedText(allLines[i]);

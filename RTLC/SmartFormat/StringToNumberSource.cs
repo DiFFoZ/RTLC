@@ -11,7 +11,7 @@ internal class StringToNumberSource : Source
             return false;
         }
 
-        if (!selectorInfo.SelectorText.Equals("ToNumber", StringComparison.OrdinalIgnoreCase))
+        if (!selectorInfo.SelectorText.Equals("ToNumber"))
         {
             return false;
         }
