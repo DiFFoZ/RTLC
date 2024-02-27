@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using RTLC.API;
 using UnityEngine;
@@ -55,6 +54,10 @@ internal static class ReplaceTextures
             RTLCPlugin.Instance.Logger.LogInfo($"Found {texture.name} to replace");
 
             material.mainTexture = newTexture;
+            if (newTexture.isReadable)
+            {
+                newTexture.Apply(true, true);
+            }
         }
     }
 }

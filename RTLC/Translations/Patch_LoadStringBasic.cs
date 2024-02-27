@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
-using System.Text.RegularExpressions;
+using GameNetcodeStuff;
 using HarmonyLib;
+using RTLC.Helpers;
 
 namespace RTLC.Translations;
 [HarmonyPatch]
@@ -19,6 +18,15 @@ internal static class Patch_LoadStringBasic
         yield return AccessTools.Method(typeof(IngamePlayerSettings), nameof(IngamePlayerSettings.UpdateMicPushToTalkButton));
 
         yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.ChangeControlTipMultiple));
+
+        yield return AccessTools.Method(typeof(StartOfRound), nameof(StartOfRound.SetMapScreenInfoToCurrentLevel));
+
+        yield return AccessTools.Method(typeof(SteamValveHazard), "Update");
+        yield return AccessTools.Method(typeof(ShipTeleporter), "Update");
+
+        yield return AccessTools.Method(typeof(ElevatorAnimationEvents), nameof(ElevatorAnimationEvents.ElevatorFullyRunning));
+        yield return AccessTools.Method(typeof(PlayerControllerB), nameof(PlayerControllerB.ConnectClientToPlayerObject));
+        yield return AccessTools.Method(typeof(Terminal), "TextPostProcess");
     }
 
     [HarmonyTranspiler]
@@ -30,7 +38,13 @@ internal static class Patch_LoadStringBasic
            .Repeat(m =>
            {
                var nextInstruction = m.InstructionAt(1);
-               if (nextInstruction.opcode == OpCodes.Stfld || nextInstruction.operand is MethodInfo { Name: "Log" })
+               if (nextInstruction.opcode == OpCodes.Stfld)
+               {
+                   m.Advance(1);
+                   return;
+               }
+
+               if (TranspilerHelper.CheckInstructionsForIgnoredMethods(matcher))
                {
                    m.Advance(1);
                    return;

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
 using HarmonyLib;
+using RTLC.Helpers;
 using TMPro;
 
 namespace RTLC.Translations;
@@ -22,7 +21,7 @@ internal static class Patch_LoadStringWithTextMeshPro
         yield return AccessTools.Method(typeof(MenuManager), nameof(MenuManager.ConfirmHostButton));
         yield return AccessTools.Method(typeof(MenuManager), nameof(MenuManager.HostSetLobbyPublic));
         yield return AccessTools.Method(typeof(MenuManager), "DisplayLeaderboardSlots");
-        yield return AsyncMoveNext(typeof(MenuManager), "GetLeaderboardForChallenge"); // async
+        yield return AccessToolsHelper.AsyncMoveNext(typeof(MenuManager), "GetLeaderboardForChallenge"); // async
 
         yield return AccessTools.Method(typeof(ChallengeLeaderboardSlot), nameof(ChallengeLeaderboardSlot.SetSlotValues));
 
@@ -32,33 +31,17 @@ internal static class Patch_LoadStringWithTextMeshPro
         yield return AccessTools.Method(typeof(SettingsOption), nameof(SettingsOption.ToggleEnabledImage));
         yield return AccessTools.Method(typeof(KepRemapPanel), nameof(KepRemapPanel.LoadKeybindsUI));
 
-        yield return AsyncMoveNext(typeof(SteamLobbyManager), nameof(SteamLobbyManager.LoadServerList)); // async
+        yield return AccessToolsHelper.AsyncMoveNext(typeof(SteamLobbyManager), nameof(SteamLobbyManager.LoadServerList)); // async
 
         yield return AccessTools.Method(typeof(TimeOfDay), nameof(TimeOfDay.UpdateProfitQuotaCurrentTime));
-    }
 
-    public static MethodInfo AsyncMoveNext(Type type, string name)
-    {
-        var method = AccessTools.Method(type, name);
-        if (method is null)
-        {
-            return null!;
-        }
+        yield return AccessTools.EnumeratorMoveNext(AccessTools.Method(typeof(StartOfRound), nameof(StartOfRound.openingDoorsSequence)));
+        yield return AccessTools.Method(typeof(StartOfRound), "SceneManager_OnLoad");
+        yield return AccessTools.Method(typeof(StartOfRound), "SceneManager_OnLoadComplete1");
 
-        var asyncAttribute = method.GetCustomAttribute<AsyncStateMachineAttribute>();
-        if (asyncAttribute is null)
-        {
-            return null!;
-        }
+        yield return AccessTools.Method(typeof(RoundManager), nameof(RoundManager.GenerateNewLevelClientRpc));
 
-        var asyncStateMachineType = asyncAttribute.StateMachineType;
-        var asyncMethodBody = AccessTools.DeclaredMethod(asyncStateMachineType, nameof(IAsyncStateMachine.MoveNext));
-        if (asyncMethodBody is null)
-        {
-            return null!;
-        }
-
-        return asyncMethodBody;
+        yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.ApplyPenalty));
     }
 
     [HarmonyTranspiler]
@@ -69,7 +52,7 @@ internal static class Patch_LoadStringWithTextMeshPro
         matcher.MatchForward(false, new CodeMatch(c => c.opcode == OpCodes.Ldstr))
             .Repeat(m =>
             {
-                if (CheckIsConcating(m))
+                if (TranspilerHelper.CheckInstructionsForFormattingUsed(m, s_TMPText_TextSetter))
                 {
                     while (m.IsValid && (m.Operand as MethodInfo) != s_TMPText_TextSetter)
                     {
@@ -93,47 +76,5 @@ internal static class Patch_LoadStringWithTextMeshPro
             });
 
         return matcher.InstructionEnumeration();
-    }
-
-    private static bool CheckIsConcating(CodeMatcher matcher)
-    {
-        var index = matcher.Pos;
-        var isFormating = false;
-
-        while (matcher.IsValid)
-        {
-            if (!(matcher.Opcode == OpCodes.Call || matcher.Opcode == OpCodes.Callvirt))
-            {
-                matcher.Advance(1);
-                continue;
-            }
-
-            var method = (MethodInfo)matcher.Operand;
-            if (method.Name.Equals("Format")
-                || method.Name.Equals("Concat"))
-            {
-                isFormating = true;
-                matcher.Advance(1);
-                continue;
-            }
-
-            if (method == s_TMPText_TextSetter)
-            {
-                break;
-            }
-
-            if (isFormating)
-            {
-                isFormating = false;
-                break;
-            }
-
-            matcher.Advance(1);
-        }
-
-        matcher.Start();
-        matcher.Advance(index);
-
-        return isFormating;
     }
 }

@@ -1,7 +1,37 @@
 {
-	"DEADLINE:\n NOW": "СРОК:\n СЕЙЧАС",
-    "DEADLINE:\n{0} Days": "СРОК:\n\\{0\\} Дней",
+	"AS MUCH PROFIT AS POSSIBLE": "КАК МОЖНО БОЛЬШЕ ПРИБЫЛИ",
+    "Welcome to\n": "Добро пожаловать\n",
+
+	"DEADLINE:\n NOW": "СРОК:\nСЕЙЧАС",
+    "DEADLINE:\n{0} Days": "СРОК:\n\\{0\\} Дня",
+
     "PROFIT QUOTA:\n${0} / ${1}": "КВОТА:\n$\\{0\\} / $\\{1\\}",
 
 	"DOOR HYDRAULICS:": "ГИДРАВЛИКА ШЛЮЗА:",
+
+	"Orbiting: ": "Орбита: ",
+	"Weather: ": "Погода: ",
+
+	"r:^POPULATION: (.+)\\nCONDITIONS: (.+)\\nFAUNA: (.+)$": "НАСЕЛЕНИЕ: {Matches[0].Translate}\nУСЛОВИЯ: {Matches[1].Translate}\nФАУНА: {Matches[2].Translate}",
+	"r:^POPULATION: (.+)\\nCONDITIONS: (.+)": "НАСЕЛЕНИЕ: {Matches[0].Translate}\nУСЛОВИЯ: {Matches[1].Translate}",
+
+	"Abandoned": "Заброшенное",
+	"Unknown": "Неизвестно",
+	"None": "Нет",
+
+	"Arid. Thick haze, worsened by industrial artifacts.": "Засушливо. Густая дымка, усугубленная промышленными артефактами.",
+	"Jagged and weathered terrain. ": "Изрезанная и обветренная местность. ",
+	"Humid. Rough terrain. Teeming with plant-life.": "Влажно. Неровный рельеф. Изобилует растительным миром.",
+	"No land masses. Continual storms.": "Суши нет. Непрерывные штормы.",
+	"Expansive. Constant rain.": "Просторная. Постоянные дожди.",
+	"Frozen, rocky. Its planet orbits a white dwarf star.": "Замерзшая, каменистая. Его планета вращается вокруг звезды - белого карлика.",
+	"Frozen, rocky. This moon was mined for resources. It's easy to get lost here.": "Замерзшая, каменистая. На этой луне добывали ресурсы. Здесь легко заблудиться.",
+
+	"Dominated by a few species.": "Доминируют несколько видов.",
+	"Ecosystem supports territorial behaviour.": "Экосистема поддерживает территориальное поведение.",
+	"A competitive ecosystem supports aggressive lifeforms.": "Конкурентная экосистема поддерживает агрессивные формы жизни.",
+	"Where the Company resides.": "Место проживания компании.",
+	"Diverse": "Разнообразная",
+	"Unlikely for complex life to exist": "Маловероятно существование сложной жизни",
+	"Dangerous entities have been rumored to take residence in the vast network of tunnels.": "Ходят слухи, что в огромной сети туннелей поселились опасные сущности.",
 }

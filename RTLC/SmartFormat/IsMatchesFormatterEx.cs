@@ -55,8 +55,6 @@ internal class IsMatchesFormatterEx : IFormatter
             matchingGroupValues.RemoveAt(i);
         }
 
-        Console.WriteLine(string.Join(", ", new List<string>(matchingGroupValues)));
-
         foreach (var formatItem in formats[0].Items)
         {
             if (formatItem is Placeholder ph)

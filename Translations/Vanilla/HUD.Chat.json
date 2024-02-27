@@ -1,0 +1,10 @@
+{
+	"Typing...": "Ввод текста...",
+    "Press \"/\" to talk.": "Открыть чат: \"/\".",
+
+	" was left behind.": " остался за бортом.",
+	" joined the ship.": " присоединился.",
+	"[playerNum{0}] started the ship.": "[playerNum\\{0\\}] запустил корабль.",
+	"[playerNum{0}] was kicked.": "[playerNum\\{0\\}] был кикнут.",
+	"[playerNum{0}] disconnected.": "[playerNum\\{0\\}] отключился."
+}

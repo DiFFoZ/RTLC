@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RTLC.API;
+﻿using RTLC.API;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -33,7 +32,7 @@ internal static class ReplaceTextOnSceneLoaded
                 continue;
             }
 
-            if (ui is TMP_Dropdown dropdown)
+            if (ui is TMP_Dropdown dropdown && dropdown.options != null)
             {
                 foreach (var option in dropdown.options)
                 {

@@ -50,9 +50,12 @@
     "Item tertiary use": "Третичное использование",
 
     "DISPLAY": "ЭКРАН",
+
     "Frame rate cap:": "Частота кадров:",
     "Use monitor (V-Sync)": "V-Sync",
     "Uncapped": "Неограниченно",
+    "r:^[0-9]+ FPS$": "{Matches[0]} FPS",
+
     "Display mode:": "Режим экрана:",
     "Fullscreen": "Полноэкранный",
     "Windowed fullscreen": "Оконный без рамок",
@@ -64,7 +67,6 @@
 
     "> Confirm changes": "> Подтвердить изменения",
     "Unconfirmed changes!": "Изменения не подтверждены!",
-    "Frame rate cap:": "Частота кадров:",
 
     "> Reset all to default": "> Сбросить настройки",
 }

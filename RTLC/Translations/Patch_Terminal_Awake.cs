@@ -51,7 +51,7 @@ internal static class Patch_Terminal_Awake
 
     [HarmonyPatch("TextPostProcess")]
     [HarmonyPostfix]
-    public static void TextPostProcess(ref string __result)
+    public static void ReplaceTimeOfDay(ref string __result)
     {
         var currentDay = DateTime.Now.DayOfWeek switch
         {
