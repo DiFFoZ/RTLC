@@ -6,8 +6,8 @@
     "WelcomeNode2": "\nПожалуйста, опишите свою роль в команде: ",
     "Start": "Добро пожаловать в FORTUNE-9 ОС\n\tПредоставлено компанией\n\n[currentDayRussian].\n\nВведите \"Help\" для получения списка команд.\n\n\n\n\n",
 
-    "r:^You have requested to order ([\\w\\d\\s.-,]+) ?\\n?(Amount: \\[variableAmount\\]\\. \\n)?Total cost of items?: \\[totalCost\\]\\.\\n\\nPlease CONFIRM or DENY\\.\\n\\n$": "Вы запросили\\: {Matches[0].Translate}\n{Matches[1].Length:cond:!=0?Количество\\: [variableAmount].\n|}Стоимость\\: [totalCost].{\"Terminal_Confirmation\".Translate}",
-    "r:^Ordered (\\[variableAmount\\] )?([\\w\\d\\s!.-]+) Your new balance is \\[playerCredits\\]\\.(\\n+.+\\n\\n.*)?$": "Вы заказали\\: {Matches[1]}{Matches[0].Length:cond:!=0? x[variableAmount]|}. Оставшиеся кредиты: [playerCredits].{Matches[2].Translate}",
+    "r:^You have requested to order ([\\w\\d\\s.,-]+) ?\\n?(Amount: \\[variableAmount\\]\\. \\n)?Total cost of items?: \\[totalCost\\]\\.\\n\\nPlease CONFIRM or DENY\\.\\n\\n$": "Вы запросили\\: {Matches[0].Translate}\n{Matches[1].Length:cond:!=0?Количество\\: [variableAmount].\n|}Стоимость\\: [totalCost].{\"Terminal_Confirmation\".Translate}",
+    "r:^Ordered (\\[variableAmount\\] )?([\\w\\d\\s!.,-]+) Your new balance is \\[playerCredits\\]\\.(\\n+.+\\n\\n.*)?$": "Вы заказали\\: {Matches[1]}{Matches[0].Length:cond:!=0? x[variableAmount]|}. Оставшиеся кредиты: [playerCredits].{Matches[2].Translate}",
 
     "\n\nOur contractors enjoy fast, free shipping while on the job! Any purchased items will arrive hourly at your approximate location.\n\n": "\n\nНаши сотрудники пользуются быстрой и бесплатной доставкой во время работы! Все приобретённые товары будут доставлены в течение часа до вашего приблизительного местоположения.\n\n",
     "key:Terminal_RearrangeInfo:\nPress [B] to rearrange objects in your ship and [V] to confirm.\n": "\nНажмите [B], чтобы переставить объекты на корабле, и [V], чтобы подтвердить.\n",

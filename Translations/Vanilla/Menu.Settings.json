@@ -54,7 +54,7 @@
     "Frame rate cap:": "Частота кадров:",
     "Use monitor (V-Sync)": "V-Sync",
     "Uncapped": "Неограниченно",
-    "r:^[0-9]+ FPS$": "{Matches[0]} FPS",
+    "r:^([0-9]+) FPS$": "{Matches[0]} FPS",
 
     "Display mode:": "Режим экрана:",
     "Fullscreen": "Полноэкранный",

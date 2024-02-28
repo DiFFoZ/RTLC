@@ -9,7 +9,7 @@ internal static class Patch_Terminal_Awake
 {
     private static bool s_Initialized;
 
-    [HarmonyPatch("Awake")]
+    [HarmonyPatch(nameof(Terminal.Awake))]
     [HarmonyPostfix]
     [HarmonyWrapSafe]
     public static void TranslateNodes(Terminal __instance)
@@ -17,10 +17,15 @@ internal static class Patch_Terminal_Awake
         if (s_Initialized)
             return;
 
-        foreach (var node in __instance.terminalNodes.allKeywords.SelectMany(x =>
-                x.compatibleNouns.Select(c => c.result).Append(x.specialKeywordResult))
-            .Concat(__instance.terminalNodes.specialNodes)
-            .Concat(__instance.terminalNodes.terminalNodes))
+        var nodes = __instance.terminalNodes.allKeywords.SelectMany(tk =>
+        {
+            var nounNodes = tk.compatibleNouns?.Select(c => c.result) ?? [];
+
+            return nounNodes.Append(tk.specialKeywordResult);
+        }).Concat(__instance.terminalNodes.specialNodes)
+        .Concat(__instance.terminalNodes.terminalNodes);
+
+        foreach (var node in nodes)
         {
             if (node == null)
             {
@@ -49,7 +54,7 @@ internal static class Patch_Terminal_Awake
         s_Initialized = true;
     }
 
-    [HarmonyPatch("TextPostProcess")]
+    [HarmonyPatch(nameof(Terminal.TextPostProcess))]
     [HarmonyPostfix]
     public static void ReplaceTimeOfDay(ref string __result)
     {

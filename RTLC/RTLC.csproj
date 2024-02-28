@@ -36,8 +36,8 @@
   </ItemGroup>
 
   <Target Name="OutputDll" AfterTargets="AfterBuild" Condition="$(IAmDiFFoZ)=='true'">
-    <Copy SourceFiles="$(OutputPath)/RTLC.dll" DestinationFolder="C:/Users/$(DiFFoZ)/AppData/Roaming/Thunderstore Mod Manager/DataFolder/LethalCompany/profiles/Dev/BepInEx/plugins/DiFFoZ-Test_RTLC/" />
-    <Exec Command="xcopy.exe &quot;$(ProjectDir)..\Translations&quot; &quot;C:/Users/$(DiFFoZ)/AppData/Roaming/Thunderstore Mod Manager/DataFolder/LethalCompany/profiles/Dev/BepInEx/plugins/DiFFoZ-Test_RTLC/Translations&quot; /Y /E" />
+    <Copy SourceFiles="$(OutputPath)/RTLC.dll" DestinationFolder="C:/Users/$(DiFFoZ)/AppData/Roaming/r2modmanPlus-local/LethalCompany/profiles/ABOBA/BepInEx/plugins/DiFFoZ-Test_RTLC/" />
+    <Exec Command="xcopy.exe &quot;$(ProjectDir)..\Translations&quot; &quot;C:/Users/$(DiFFoZ)/AppData/Roaming/r2modmanPlus-local/LethalCompany/profiles/ABOBA/BepInEx/plugins/DiFFoZ-Test_RTLC/Translations&quot; /Y /E" />
   </Target>
 
 </Project>
