@@ -22,7 +22,7 @@ public class RTLCPlugin : BaseUnityPlugin
 
     internal string WorkingDirectory { get; private set; } = null!;
 
-    private Harmony? m_Harmony;
+    internal Harmony Harmony { get; private set; } = null!;
 
     private void Awake()
     {
@@ -45,8 +45,8 @@ public class RTLCPlugin : BaseUnityPlugin
 
         // HarmonyFileLog.Enabled = true;
 
-        m_Harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-        m_Harmony.PatchAll(typeof(RTLCPlugin).Assembly);
+        Harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+        Harmony.PatchAll(typeof(RTLCPlugin).Assembly);
 
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }

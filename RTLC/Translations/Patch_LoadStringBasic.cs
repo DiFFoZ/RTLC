@@ -30,9 +30,23 @@ internal static class Patch_LoadStringBasic
     }
 
     [HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> ReplaceText(IEnumerable<CodeInstruction> instructions)
+    public static IEnumerable<CodeInstruction> ReplaceText(IEnumerable<CodeInstruction> instructions, MethodBase originalMethod)
+    {
+        TranspilerHelper.PatchModsPrefixesAndPostfixes(originalMethod,
+            SymbolExtensions.GetMethodInfo(() => ReplaceText(default!, default!)));
+
+        return PatchMethod(instructions);
+    }
+
+    private static IEnumerable<CodeInstruction> PatchMethod(IEnumerable<CodeInstruction> instructions)
     {
         var matcher = new CodeMatcher(instructions);
+
+        if (TranspilerHelper.FindTryCatchInstructions(matcher))
+        {
+            // todo: add logging
+            return instructions;
+        }
 
         matcher.MatchForward(false, new CodeMatch(c => c.opcode == OpCodes.Ldstr))
            .Repeat(m =>

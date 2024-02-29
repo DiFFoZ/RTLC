@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
+using Mono.Cecil.Cil;
 using RTLC.Helpers;
 using TMPro;
+using OpCodes = System.Reflection.Emit.OpCodes;
 
 namespace RTLC.Translations;
 [HarmonyPatch]
@@ -45,9 +48,23 @@ internal static class Patch_LoadStringWithTextMeshPro
     }
 
     [HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> ReplaceText(IEnumerable<CodeInstruction> instructions)
+    public static IEnumerable<CodeInstruction> ReplaceText(IEnumerable<CodeInstruction> instructions, MethodBase originalMethod)
+    {
+        TranspilerHelper.PatchModsPrefixesAndPostfixes(originalMethod,
+            SymbolExtensions.GetMethodInfo(() => Patch_LoadStringBasic.ReplaceText(default!, default!)));
+
+        return PatchMethod(instructions);
+    }
+
+    private static IEnumerable<CodeInstruction> PatchMethod(IEnumerable<CodeInstruction> instructions)
     {
         var matcher = new CodeMatcher(instructions);
+
+        if (TranspilerHelper.FindTryCatchInstructions(matcher))
+        {
+            // todo: add logging
+            return instructions;
+        }
 
         matcher.MatchForward(false, new CodeMatch(c => c.opcode == OpCodes.Ldstr))
             .Repeat(m =>

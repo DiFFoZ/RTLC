@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Text.RegularExpressions;
 using HarmonyLib;
+using RTLC.Translations;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace RTLC.Helpers;
 internal static class TranspilerHelper
 {
-    private static readonly HashSet<Type> s_IgnoredTypes = [typeof(Debug), typeof(Animation), typeof(Animator)];
+    private static readonly HashSet<Type> s_IgnoredTypes = [typeof(Debug), typeof(Animation), typeof(Animator), typeof(Regex), typeof(CustomMessagingManager)];
 
     public static bool CheckInstructionsForIgnoredMethods(CodeMatcher matcher)
     {
@@ -88,5 +92,43 @@ internal static class TranspilerHelper
         matcher.Advance(index);
 
         return isFormating;
+    }
+
+    public static bool FindTryCatchInstructions(CodeMatcher matcher)
+    {
+        var index = matcher.Pos;
+
+        var didFindLeaveInstruction = matcher.SearchForward(c => c.opcode == OpCodes.Leave || c.opcode == OpCodes.Leave_S).IsValid;
+
+        matcher.Start();
+        matcher.Advance(index);
+
+        return didFindLeaveInstruction;
+    }
+
+    public static void PatchModsPrefixesAndPostfixes(MethodBase method, MethodInfo transpilerMethod)
+    {
+        // find mods that patch original method with prefix/postfix
+        var patchInfo = Harmony.GetPatchInfo(method);
+        if (patchInfo == null)
+        {
+            return;
+        }
+
+        foreach (var patch in patchInfo.Prefixes.Concat(patchInfo.Postfixes))
+        {
+            var modPatchInfo = Harmony.GetPatchInfo(patch.PatchMethod);
+            if (modPatchInfo != null && modPatchInfo.Owners.Contains(MyPluginInfo.PLUGIN_GUID))
+            {
+                RTLCPlugin.Instance.Logger.LogInfo($"Ignored patching of {patch.PatchMethod.FullDescription()} due to already patched");
+                continue;
+            }
+
+            RTLCPlugin.Instance.Logger.LogInfo($"Patching {patch.PatchMethod.FullDescription()}");
+
+            RTLCPlugin.Instance.Harmony.CreateProcessor(patch.PatchMethod)
+                .AddTranspiler(transpilerMethod)
+                .Patch();
+        }
     }
 }
