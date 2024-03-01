@@ -40,7 +40,7 @@ jobs:
           mv Bundles/ ./BepInEx/plugins/RTLC
           mv Translations/ ./BepInEx/plugins/RTLC
           mv ./*.md ./BepInEx/
-          zip -r modpack.zip -x RTLC.deps.json BepInEx/
+          zip -r modpack.zip ./BepInEx/* -x ./BepInEx/RTLC.deps.json
 
       - name: Upload to Thunderstore
         uses: GreenTF/upload-thunderstore-package@v4.2
