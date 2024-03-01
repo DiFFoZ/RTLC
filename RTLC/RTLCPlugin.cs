@@ -11,8 +11,7 @@ using RTLC.API;
 namespace RTLC;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-[BepInDependency(KnownPluginDependency.c_HDLethalCompany, BepInDependency.DependencyFlags.SoftDependency)] // see UpdateScanNode patch for the reason
-public class RTLCPlugin : BaseUnityPlugin
+public partial class RTLCPlugin : BaseUnityPlugin
 {
     internal static RTLCPlugin Instance { get; private set; } = null!;
 

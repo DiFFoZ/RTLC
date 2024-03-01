@@ -30,7 +30,7 @@ internal static class Patch_LoadStringBasic
     }
 
     [HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> ReplaceText(IEnumerable<CodeInstruction> instructions, MethodBase originalMethod)
+    public static IEnumerable<CodeInstruction> ReplaceText(IEnumerable<CodeInstruction> instructions, MethodBase? originalMethod)
     {
         TranspilerHelper.PatchModsPrefixesAndPostfixes(originalMethod,
             SymbolExtensions.GetMethodInfo(() => ReplaceText(default!, default!)));

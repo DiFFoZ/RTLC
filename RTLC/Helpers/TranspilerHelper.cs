@@ -106,8 +106,13 @@ internal static class TranspilerHelper
         return didFindLeaveInstruction;
     }
 
-    public static void PatchModsPrefixesAndPostfixes(MethodBase method, MethodInfo transpilerMethod)
+    public static void PatchModsPrefixesAndPostfixes(MethodBase? method, MethodInfo transpilerMethod)
     {
+        if (method == null)
+        {
+            return;
+        }    
+
         // find mods that patch original method with prefix/postfix
         var patchInfo = Harmony.GetPatchInfo(method);
         if (patchInfo == null)
