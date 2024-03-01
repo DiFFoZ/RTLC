@@ -34,13 +34,12 @@ jobs:
 
       - name: Zip files
         run: |
-          mkdir -p ./BepInEx/plugins/RTLC
-          mv ./RTLC/bin/Release/netstandard2.1/* ./BepInEx/
-          mv ./BepInEx/RTLC.dll ./BepInEx/plugins/RTLC
-          mv Bundles/ ./BepInEx/plugins/RTLC
-          mv Translations/ ./BepInEx/plugins/RTLC
-          mv ./*.md ./BepInEx/
-          zip -r modpack.zip ./BepInEx/* -x ./BepInEx/RTLC.deps.json
+          mkdir -p ./release/BepInEx/plugins/RTLC
+          mv ./RTLC/bin/Release/netstandard2.1/* ./release/BepInEx/plugins/RTLC
+          mv ./release/BepInEx/plugins/RTLC/manifest.json ./release/
+          mv ./release/BepInEx/plugins/RTLC/icon.png ./release/
+          mv ./*.md ./release/
+          zip -r modpack.zip ./release/* -x ./release/BepInEx/plugins/RTLC/RTLC.deps.json
 
       - name: Upload to Thunderstore
         uses: GreenTF/upload-thunderstore-package@v4.2
