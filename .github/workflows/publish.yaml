@@ -52,11 +52,9 @@ jobs:
           description: ''
           version: ''
           file: modpack.zip
+          repo: thunderstore.io
           categories: |
             Translations
-          deps: |
-            BepInEx-BepInExPack-5.4.2100
-            DiFFoZ-SmartFormat-3.3.2
       
       - name: Create release
         uses: actions/create-release@main
