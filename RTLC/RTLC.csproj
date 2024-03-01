@@ -13,6 +13,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>$(NoWarn);CS0436</NoWarn>
+    <Version>0.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -31,9 +32,18 @@
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
     <PackageReference Include="LethalCompany.GameLibs.Steam" Version="*-*" Publicize="True" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" IncludeAssets="compile" />
-    <PackageReference Include="SmartFormat" Version="3.3.2" />
+    <PackageReference Include="SmartFormat" Version="3.3.2" IncludeAssets="compile" />
     <PackageReference Include="UnityEngine.Modules" Version="2022.3.9" IncludeAssets="compile" />
   </ItemGroup>
+
+  <Target Name="CopyPublishFiles" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <PublishFiles Include="$(MSBuildThisFileDirectory)Publish/*.*" />
+    </ItemGroup>
+
+    <!-- Copies icon.png and manifest.json -->
+    <Copy SourceFiles="@(PublishFiles)" DestinationFolder="$(OutDir)" Condition="@(PublishFiles-&gt;Count()) != 0" />
+  </Target>
 
   <Target Name="OutputDll" AfterTargets="AfterBuild" Condition="$(IAmDiFFoZ)=='true'">
     <Copy SourceFiles="$(OutputPath)/RTLC.dll" DestinationFolder="C:/Users/$(DiFFoZ)/AppData/Roaming/r2modmanPlus-local/LethalCompany/profiles/ABOBA/BepInEx/plugins/DiFFoZ-Test_RTLC/" />
