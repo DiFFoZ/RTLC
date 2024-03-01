@@ -1,0 +1,11 @@
+{
+    "name": "Test_RTLC",
+    "version_number": "0.0.0",
+    "website_url": "https://github.com/DiFFoZ/RTLC",
+    "description": "Russian translation of the game Lethal Company. Перевод на русский язык игры Lethal Company.",
+    "dependencies":
+    [
+        "BepInEx-BepInExPack-5.4.2100",
+        "DiFFoZ-SmartFormat-3.3.2"
+    ]
+}
