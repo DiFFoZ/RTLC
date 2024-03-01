@@ -26,6 +26,9 @@ jobs:
       - name: Update version
         run: "sed -i \"s#<Version>0.0.0</Version>#<Version>${{ github.event.inputs.version }}</Version>#\" RTLC/RTLC.csproj"  
 
+      - name: Update modpack version
+        run: "sed -i \"s#\"version_number\": \"0.0.0\",#\"version_number\": \"${{ github.event.inputs.version }}\",#\" RTLC/Publish/manifest.json"
+
       - name: Build
         run: dotnet build RTLC/RTLC.csproj --configuration Release --no-restore
 
@@ -37,7 +40,7 @@ jobs:
           mv Bundles/ ./BepInEx/plugins/RTLC
           mv Translations/ ./BepInEx/plugins/RTLC
           mv ./*.md ./BepInEx/
-          zip -r modpack.zip BepInEx/ -x RTLC.deps.json
+          zip -r modpack.zip -x RTLC.deps.json BepInEx/
 
       - name: Upload to Thunderstore
         uses: GreenTF/upload-thunderstore-package@v4.2
@@ -45,9 +48,9 @@ jobs:
           token: ${{ secrets.THUNDERSTORE_TOKEN }}
           community: lethal-company
           namespace: DiFFoZ
-          name: Test_RTLC
-          description: Russian translation of the game Lethal Company. Перевод на русский язык игры Lethal Company.
-          version: ${{ github.event.inputs.version }}
+          name: ''
+          description: ''
+          version: ''
           file: modpack.zip
           categories: |
             Translations
