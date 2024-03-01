@@ -19,7 +19,7 @@
   <PropertyGroup>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>embedded</DebugType>
-    <PathMap>"$(SolutionDir)=/"</PathMap>
+    <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
   </PropertyGroup>
 
   <ItemGroup>
