@@ -27,7 +27,7 @@ jobs:
         run: "sed -i \"s#<Version>0.0.0</Version>#<Version>${{ github.event.inputs.version }}</Version>#\" RTLC/RTLC.csproj"  
 
       - name: Update modpack version
-        run: "sed -i \"s#\"version_number\": \"0.0.0\",#\"version_number\": \"${{ github.event.inputs.version }}\",#\" RTLC/Publish/manifest.json"
+        run: 'sed -i "s#\"version_number\": \"0.0.0\",#\"version_number\": \"${{ github.event.inputs.version }}\",#" RTLC/Publish/manifest.json'
 
       - name: Build
         run: dotnet build RTLC/RTLC.csproj --configuration Release --no-restore
