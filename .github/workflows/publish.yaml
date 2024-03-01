@@ -41,7 +41,7 @@ jobs:
           zip -r modpack.zip * -x ./BepInEx/plugins/RTLC/RTLC.deps.json
 
       - name: Upload to Thunderstore
-        uses: GreenTF/upload-thunderstore-package@v4.2
+        uses: GreenTF/upload-thunderstore-package@v4.3
         with:
           token: ${{ secrets.THUNDERSTORE_TOKEN }}
           community: lethal-company
@@ -51,11 +51,10 @@ jobs:
           version: ${{ github.event.inputs.version }}
           file: ./release/modpack.zip
           repo: thunderstore.io
-          categories: |
-            Translations
+          website: https://github.com/DiFFoZ/RTLC
           deps: |
-            BepInEx-BepInExPack-5.4.2100
-            DiFFoZ-SmartFormat-3.3.2
+            BepInEx-BepInExPack@5.4.2100
+            DiFFoZ-SmartFormat@3.3.2
       
       - name: Create release
         uses: actions/create-release@main
