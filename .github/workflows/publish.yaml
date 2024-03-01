@@ -36,10 +36,13 @@ jobs:
         run: |
           mkdir -p ./release/BepInEx/plugins/RTLC
           mv ./RTLC/bin/Release/netstandard2.1/* ./release/BepInEx/plugins/RTLC
-          mv ./release/BepInEx/plugins/RTLC/manifest.json ./release/
-          mv ./release/BepInEx/plugins/RTLC/icon.png ./release/
-          mv ./*.md ./release/
-          zip -r modpack.zip ./release/* -x ./release/BepInEx/plugins/RTLC/RTLC.deps.json
+          mv ./release/BepInEx/plugins/RTLC/manifest.json ./release
+          mv ./release/BepInEx/plugins/RTLC/icon.png ./release
+          mv ./*.md ./release
+          mv ./Bundles/ ./release/BepInEx/plugins/RTLC
+          mv ./Translations/ ./release/BepInEx/plugins/RTLC
+          cd ./release
+          zip -r modpack.zip * -x ./BepInEx/plugins/RTLC/RTLC.deps.json
 
       - name: Upload to Thunderstore
         uses: GreenTF/upload-thunderstore-package@v4.2
@@ -50,7 +53,7 @@ jobs:
           name: ''
           description: ''
           version: ''
-          file: modpack.zip
+          file: ./release/modpack.zip
           repo: thunderstore.io
           categories: |
             Translations
