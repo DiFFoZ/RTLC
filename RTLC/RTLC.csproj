@@ -19,11 +19,7 @@
   <PropertyGroup>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>embedded</DebugType>
-    <!--
-        Trim the project path to prevent players from potentially
-        viewing Private Information in stack traces.
-        -->
-    <PathMap>$(SolutionDir)=/</PathMap>
+    <PathMap>"$(SolutionDir)=/"</PathMap>
   </PropertyGroup>
 
   <ItemGroup>
