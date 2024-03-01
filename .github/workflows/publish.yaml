@@ -31,7 +31,7 @@ jobs:
 
       - name: Zip files
         run: |
-          mkdir ./BepInEx plugins RTLC
+          mkdir -p ./BepInEx/plugins/RTLC
           mv ./RTLC/bin/Release/netstandard2.1/* ./BepInEx/
           mv ./BepInEx/RTLC.dll ./BepInEx/plugins/RTLC
           mv Bundles/ ./BepInEx/plugins/RTLC
