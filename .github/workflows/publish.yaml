@@ -66,4 +66,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.event.inputs.version }}
-          release_name: RTLC release v${{ steps.get-version.outputs.version }}
+          release_name: RTLC release v${{ github.event.inputs.version }}
