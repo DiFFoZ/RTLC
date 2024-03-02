@@ -1,11 +1,9 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using HarmonyLib.Tools;
 using RTLC.API;
 
 namespace RTLC;
@@ -28,9 +26,7 @@ public partial class RTLCPlugin : BaseUnityPlugin
         Instance = this;
         Logger = base.Logger;
         WorkingDirectory = new FileInfo(Info.Location).DirectoryName;
-
         Config = new RTLCConfiguration();
-        Config.Initialize();
 
         foreach (var method in typeof(RTLCPlugin)
             .Assembly
@@ -39,10 +35,8 @@ public partial class RTLCPlugin : BaseUnityPlugin
             .Where(m => m.GetCustomAttribute<InitializeOnAwakeAttribute>() != null))
         {
             method.Invoke(null, null);
-            Logger.LogInfo($"Initialized {method.DeclaringType.Namespace}.{method.Name}");
+            Logger.LogInfo($"Initialized {method.DeclaringType.Namespace}.{method.DeclaringType.Name}::{method.Name}");
         }
-
-        // HarmonyFileLog.Enabled = true;
 
         Harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
         Harmony.PatchAll(typeof(RTLCPlugin).Assembly);

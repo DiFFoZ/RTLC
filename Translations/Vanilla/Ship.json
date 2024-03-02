@@ -3,14 +3,15 @@
     "Welcome to\n": "Добро пожаловать\n",
 
 	"DEADLINE:\n NOW": "СРОК:\nСЕЙЧАС",
-    "DEADLINE:\n{0} Days": "СРОК:\n\\{0\\} Дня",
+	"DEADLINE:\n{0} Days": "DEADLINE:\n{0} Days",
+	"r:^DEADLINE:\n([0-9]+) Days$": "СРОК:\n{Matches[0].ToNumber:plural:{} День|{} Дня|{} Дней}",
 
     "PROFIT QUOTA:\n${0} / ${1}": "КВОТА:\n$\\{0\\} / $\\{1\\}",
 
 	"DOOR HYDRAULICS:": "ГИДРАВЛИКА ШЛЮЗА:",
 
-	"Orbiting: ": "Орбита: ",
-	"Weather: ": "Погода: ",
+	"r:^(?i)Orbiting: $": "Орбита: ",
+	"r:^(?i)Weather: $": "Погода: ",
 
 	"r:^POPULATION: (.+)\\nCONDITIONS: (.+)\\nFAUNA: (.+)$": "НАСЕЛЕНИЕ: {Matches[0].Translate}\nУСЛОВИЯ: {Matches[1].Translate}\nФАУНА: {Matches[2].Translate}",
 	"r:^POPULATION: (.+)\\nCONDITIONS: (.+)": "НАСЕЛЕНИЕ: {Matches[0].Translate}\nУСЛОВИЯ: {Matches[1].Translate}",

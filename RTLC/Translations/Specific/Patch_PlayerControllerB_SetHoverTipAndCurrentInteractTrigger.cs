@@ -4,7 +4,7 @@ using GameNetcodeStuff;
 using HarmonyLib;
 using TMPro;
 
-namespace RTLC.Translations;
+namespace RTLC.Translations.Specific;
 [HarmonyPatch(typeof(PlayerControllerB), "SetHoverTipAndCurrentInteractTrigger")]
 internal static class Patch_PlayerControllerB_SetHoverTipAndCurrentInteractTrigger
 {

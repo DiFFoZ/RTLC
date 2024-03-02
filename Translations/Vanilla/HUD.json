@@ -7,10 +7,14 @@
     "RECEIVING SIGNAL": "ПОЛУЧЕНИЕ СИГНАЛА",
     "HANDS FULL": "РУКИ ЗАНЯТЫ",
 
-    "r:^([0-9]+) Days? Left$": "{Matches[0].ToNumber:plural:Осталось {} Дней|Остался {} День|Осталось {} Дня}",
+    "r:^([0-9]+) Days? Left$": "{Matches[0].ToNumber:plural:Остался {} День|Осталось {} Дня|Осталось {} Дней}",
+    "TO MEET PROFIT QUOTA": "НА ВЫПОЛНЕНИЕ КВОТЫ",
 
     "TOTAL:": "ВСЕГО:",
-    "r:^Value: \\$([0-9]+)$": "Цена: ${Matches[0]}",
+    "r:(?i)^Value: \\$([0-9]+)$": "Цена: ${Matches[0]}",
+    "(?i)Value: ???": "Цена: ???",
+    "(?i)Value: ${0}": "Цена: $\\{0\\}",
+    "Value: ": "Цена: ",
 
     "Confirm: [V]   |   Rotate: [R]   |   Store: [X]": "Подтвердить: [B]   |   Вращать: [R]  |   На склад: [X]",
 
@@ -26,5 +30,9 @@
     "Paycheck!": "Зарплата!",
 
     "New creature data sent to terminal.": "Данные о новом существе отправлена на терминал.",
+    "New creature data sent to terminal!": "Данные о новом существе отправлена на терминал!",
+
+    "Found journal entry: '": "Найден лог журнал: '",
+
     "(Some were too far to receive your message.)": "(Некоторые были слишком далеко, чтобы получить ваше сообщение.)",
 }

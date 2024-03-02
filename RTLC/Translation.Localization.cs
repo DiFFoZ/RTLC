@@ -4,15 +4,13 @@ using System.Text.RegularExpressions;
 namespace RTLC;
 internal static partial class Translation
 {
-    internal static string GetLocalizedText(string? key) => GetLocalizedText(key, key, false, null);
+    internal static string GetLocalizedText(string? key) => GetLocalizedText(key, key, false);
 
-    internal static string GetLocalizedText(string? key, bool shouldIgnoreKey) => GetLocalizedText(key, key, shouldIgnoreKey, null);
-    internal static string GetLocalizedText(string? key, bool shouldIgnoreKey, object @params) => GetLocalizedText(key, key, shouldIgnoreKey, @params);
+    internal static string GetLocalizedText(string? key, bool shouldIgnoreKey) => GetLocalizedText(key, key, shouldIgnoreKey);
 
-    internal static string GetLocalizedText(string? key, string? originalTranslation) => GetLocalizedText(key, originalTranslation, false, null);
-    internal static string GetLocalizedText(string? key, string? originalTranslation, bool shouldIgnoreKey) => GetLocalizedText(key, originalTranslation, shouldIgnoreKey, null);
+    internal static string GetLocalizedText(string? key, string? originalTranslation) => GetLocalizedText(key, originalTranslation, false);
 
-    internal static string GetLocalizedText(string? key, string? originalTranslation, bool shouldIgnoreKey, object? @params)
+    internal static string GetLocalizedText(string? key, string? originalTranslation, bool shouldIgnoreKey)
     {
         if (ShouldIgnoreTranslation(originalTranslation!)
             || s_Translations.ContainsValue(key!)
@@ -42,7 +40,10 @@ internal static partial class Translation
 
             var matchingGroupValues = (from Group grp in match.Groups select grp.Value).Skip(1).ToList();
 
-            return s_SmartFormatter.Format(s_RussianCultureInfo, kvp.Value, new { Original = originalTranslation, Matches = matchingGroupValues });
+            var formatted = s_SmartFormatter.Format(s_RussianCultureInfo, kvp.Value, new { Original = originalTranslation, Matches = matchingGroupValues });
+            s_IgnoredTranslations.Add(formatted);
+
+            return formatted;
         }
 
         if (shouldIgnoreKey)

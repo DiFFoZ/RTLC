@@ -53,7 +53,9 @@ internal static partial class Translation
 
         foreach (var translationFile in Directory.EnumerateFiles(directory, "*.json", SearchOption.AllDirectories))
         {
-            if (translationFile == s_UntranslatedFilePath)
+            var fileName = Path.GetFileName(translationFile);
+
+            if (fileName == "Untranslated.json")
             {
                 continue;
             }
@@ -107,7 +109,7 @@ internal static partial class Translation
     {
         if (File.Exists(s_UntranslatedFilePath))
         {
-            if (RTLCPlugin.Instance.Config.AutoClearUntranslatedOnAwake)
+            if (RTLCPlugin.Instance.Config.AutoClearUntranslatedOnAwake.Value)
             {
                 File.Delete(s_UntranslatedFilePath);
                 s_UntranslatedCache = [];
@@ -144,7 +146,7 @@ internal static partial class Translation
 
     private static bool ShouldIgnoreTranslation(string? text)
     {
-        if (string.IsNullOrWhiteSpace(text) || text.Length < 5)
+        if (string.IsNullOrWhiteSpace(text) || text.Length < 3)
         {
             return true;
         }

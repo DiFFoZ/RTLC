@@ -1,0 +1,15 @@
+{
+	"Unknown": "Неизвестно",
+	"Bludgeoning": "Избит",
+	"Gravity": "Гравитация",
+	"Blast": "Взрыв",
+	"Strangulation": "Удушение",
+	"Suffocation" : "Удушение",
+	"Mauling": "Нанесение телесных повреждений",
+	"Gunshots": "Огнестрельные ранения",
+	"Crushing": "Раздавлен",
+	"Drowning": "Утопление",
+	"Abandoned": "Брошен",
+	"Electrocution": "Удар тока",
+	"Kicking": "Удар ногой"
+}

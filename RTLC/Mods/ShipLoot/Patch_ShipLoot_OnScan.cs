@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using HarmonyLib;
+using MonoMod.Cil;
+using RTLC.API;
 using RTLC.Helpers;
-using RTLC.Translations;
 
 namespace RTLC.Mods.ShipLoot;
 [HarmonyPatch]
@@ -15,9 +15,9 @@ internal class Patch_ShipLoot_OnScan
     [HarmonyTargetMethod]
     public static MethodBase GetMethodPatch() => ModHelper.GetMethod();
 
-    [HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> ReplaceString(IEnumerable<CodeInstruction> instructions)
+    [HarmonyILManipulator]
+    public static void ReplaceString(ILContext context)
     {
-        return Patch_LoadStringBasic.ReplaceText(instructions, null);
+        LoadStringPatch.ReplaceLoadStringWithTranslated(context);
     }
 }

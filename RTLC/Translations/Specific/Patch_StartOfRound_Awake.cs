@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace RTLC.Translations;
+namespace RTLC.Translations.Specific;
 [HarmonyPatch(typeof(StartOfRound), "Awake")]
 internal static class Patch_StartOfRound_Awake
 {

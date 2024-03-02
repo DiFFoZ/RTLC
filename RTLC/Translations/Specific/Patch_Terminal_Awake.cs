@@ -2,7 +2,7 @@
 using System.Linq;
 using HarmonyLib;
 
-namespace RTLC.Translations;
+namespace RTLC.Translations.Specific;
 [HarmonyPatch(typeof(Terminal))]
 [HarmonyPriority(Priority.Last)]
 internal static class Patch_Terminal_Awake
@@ -32,7 +32,7 @@ internal static class Patch_Terminal_Awake
                 continue;
             }
 
-            node.displayText = Translation.GetLocalizedText(node.name, node.displayText, false);
+            node.displayText = Translation.GetLocalizedText(GetTerminalNodeName(node), node.displayText, false);
 
             var options = node.terminalOptions;
             if (options == null)
@@ -47,11 +47,23 @@ internal static class Patch_Terminal_Awake
                     continue;
                 }
 
-                option.result.displayText = Translation.GetLocalizedText(option.result.name, option.result.displayText, false);
+                option.result.displayText = Translation.GetLocalizedText(GetTerminalNodeName(option.result), option.result.displayText, false);
             }
         }
 
         s_Initialized = true;
+    }
+
+    private static string GetTerminalNodeName(TerminalNode node)
+    {
+        var name = node.name;
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            return name;
+        }
+
+        // asset created in runtime, using the displayText instead
+        return node.displayText;
     }
 
     [HarmonyPatch(nameof(Terminal.TextPostProcess))]

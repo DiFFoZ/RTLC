@@ -30,6 +30,8 @@ internal static class ReplaceTextures
             return;
         }
 
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+
         foreach (var texture in Resources.FindObjectsOfTypeAll<Texture2D>())
         {
             var name = texture.name;
@@ -43,8 +45,6 @@ internal static class ReplaceTextures
             {
                 continue;
             }
-
-            RTLCPlugin.Instance.Logger.LogInfo($"Found {name} to replace");
 
             texture.LoadImage(newTexture.EncodeToPNG());
         }

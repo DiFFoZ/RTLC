@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using TMPro;
 
-namespace RTLC.Translations;
+namespace RTLC.Translations.Specific;
 [HarmonyPatch(typeof(LobbySlot), "Awake")]
 internal static class Patch_LobbySlot_Awake
 {

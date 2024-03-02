@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 
-namespace RTLC.Translations;
-[HarmonyPatch(typeof(KepRemapPanel), "OnEnable")]
+namespace RTLC.Translations.Specific;
+[HarmonyPatch(typeof(KepRemapPanel), nameof(KepRemapPanel.OnEnable))]
 internal static class Patch_KepRemapPanel_OnEnable
 {
     [HarmonyPrefix]

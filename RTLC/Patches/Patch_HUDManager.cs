@@ -17,7 +17,7 @@ internal static class Patch_HUDManager
         return false;
     }
 
-    [HarmonyPatch("Update")]
+    [HarmonyPatch(nameof(HUDManager.Update))]
     [HarmonyTranspiler]
     private static IEnumerable<CodeInstruction> ShowKilograms(IEnumerable<CodeInstruction> instructions)
     {
@@ -25,7 +25,7 @@ internal static class Patch_HUDManager
 
         // 1 lb (real) = 105 lb (in-game)
         // 1 lb (real) = 0,45359237 kg
-        // 1 kg (in-game) = 0,45359237 * 105 = 47.62719885
+        // 1 kg (in-game) = 0.45359237 * 105 = 47.62719885
 
         // replace lb to kg values
         matcher
@@ -37,6 +37,14 @@ internal static class Patch_HUDManager
         matcher
             .SearchForward(c => c.opcode == OpCodes.Ldstr && (string)c.operand == "{0} lb")
             .Operand = "{0} кг";
+
+        // 105 lb (in-game) / 130 = 0.8076923076923077
+        // 47.62719885 / X = 0.8076923076923077
+        // X = 47.62719885 / 0.8076923076923077
+        // X = 58.9670081
+        matcher
+           .SearchForward(c => c.opcode == OpCodes.Ldc_R4 && (float)c.operand == 130f)
+           .Operand = 58.9670081f;
 
         return matcher.InstructionEnumeration();
     }

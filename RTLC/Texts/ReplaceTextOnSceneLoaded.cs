@@ -1,10 +1,11 @@
 ﻿using RTLC.API;
+using SmartFormat.ZString;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-namespace RTLC.Translations;
+namespace RTLC.Texts;
 internal static class ReplaceTextOnSceneLoaded
 {
     [InitializeOnAwake]
@@ -24,11 +25,13 @@ internal static class ReplaceTextOnSceneLoaded
             return;
         }
 
+        using var builder = new ZStringBuilder(false);
+
         foreach (var ui in Object.FindObjectsOfType<UIBehaviour>(true))
         {
             if (ui is TextMeshProUGUI text)
             {
-                text.text = Translation.GetLocalizedText(text.text);
+                SetCharArrayFast(text, builder);
                 continue;
             }
 
@@ -40,5 +43,14 @@ internal static class ReplaceTextOnSceneLoaded
                 }
             }
         }
+    }
+
+    public static void SetCharArrayFast(TextMeshProUGUI text, ZStringBuilder builder)
+    {
+        builder.Clear();
+        builder.Append(Translation.GetLocalizedText(text.text));
+
+        var array = builder.AsArraySegment();
+        text.SetCharArray(array.Array, array.Offset, array.Count);
     }
 }

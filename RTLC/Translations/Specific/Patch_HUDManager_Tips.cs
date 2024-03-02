@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace RTLC.Translations;
+namespace RTLC.Translations.Specific;
 [HarmonyPatch(typeof(HUDManager))]
 internal static class Patch_HUDManager_Tips
 {

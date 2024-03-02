@@ -4,7 +4,7 @@ using HarmonyLib;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
-namespace RTLC.Translations;
+namespace RTLC.Translations.Specific;
 [HarmonyPatch]
 internal static class Patch_HUDManager_UpdateScanNodes
 {
@@ -12,15 +12,18 @@ internal static class Patch_HUDManager_UpdateScanNodes
     public static MethodBase GetPatchingMethod()
     {
         // https://github.com/Sligili/HDLethalCompany/blob/master/HDLethalCompanyRemake/HDLethalCompany.cs#L205
-        // HDLethalCompany breaks compability with this postfix
+        // HDLethalCompany breaks combability with this postfix
 
-        if (!BepInEx.Bootstrap.Chainloader.PluginInfos.TryGetValue(KnownPluginDependency.c_HDLethalCompany, out _))
+        if (BepInEx.Bootstrap.Chainloader.PluginInfos.TryGetValue(KnownPluginDependency.c_HDLethalCompany, out _))
         {
-            // patch original method
-            return AccessTools.Method(typeof(HUDManager), "UpdateScanNodes");
+            var method = AccessTools.Method("HDLethalCompany.Patch.GraphicsPatch:UpdateScanNodesPostfix");
+            if (method != null)
+            {
+                return method;
+            }
         }
 
-        return AccessTools.Method("HDLethalCompany.Patch.GraphicsPatch:UpdateScanNodesPostfix");
+        return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.UpdateScanNodes));
     }
 
     [HarmonyILManipulator]
@@ -34,10 +37,10 @@ internal static class Patch_HUDManager_UpdateScanNodes
 
         var cursor = new ILCursor(ctx);
 
-        while (cursor.TryGotoNext(c => c.MatchLdfld(headerTextField) || c.MatchLdfld(subTextField)))
+        while (cursor.TryGotoNext(MoveType.After, c => c.MatchLdfld(headerTextField) || c.MatchLdfld(subTextField)))
         {
-            cursor.Index++;
             cursor.Emit(OpCodes.Call, SymbolExtensions.GetMethodInfo(() => Translation.GetLocalizedText(default!)));
+            cursor.Index++;
         }
     }
 }

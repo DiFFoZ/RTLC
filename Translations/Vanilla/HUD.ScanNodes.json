@@ -26,5 +26,8 @@
     "Can be accessed from terminal": "Можно открыть через терминал",
 
     "Bursted Steam Valve": "Повреждённый паровой клапан",
-    "Fix it to get rid of the steam": "Проверните, чтобы убрать пар"
+    "Fix it to get rid of the steam": "Проверните, чтобы убрать пар",
+
+    "r:Body of (.*)": "Тело {Matches[0]}",
+    "r:Cause of death: (.+)": "Причина смерти\\: ",
 }

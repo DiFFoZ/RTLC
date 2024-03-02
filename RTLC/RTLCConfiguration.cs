@@ -4,18 +4,12 @@ using BepInEx.Configuration;
 namespace RTLC;
 internal class RTLCConfiguration
 {
-    private ConfigEntry<bool> m_AutoClearUntranslatedOnAwake = null!;
+    public ConfigEntry<bool> AutoClearUntranslatedOnAwake { get; private set; }
 
-    public bool AutoClearUntranslatedOnAwake
-    {
-        get => m_AutoClearUntranslatedOnAwake.Value;
-        set => m_AutoClearUntranslatedOnAwake.Value = value;
-    }
-
-    public void Initialize()
+    public RTLCConfiguration()
     {
         var config = (RTLCPlugin.Instance as BaseUnityPlugin).Config;
 
-        m_AutoClearUntranslatedOnAwake = config.Bind("General", "ClearUntranslatedOnAwake", true);
+        AutoClearUntranslatedOnAwake = config.Bind("General", "ClearUntranslatedOnAwake", true);
     }
 }
