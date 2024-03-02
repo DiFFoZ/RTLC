@@ -7,9 +7,18 @@ using UnityEngine.SceneManagement;
 namespace RTLC.Textures;
 internal static class ReplaceTextures
 {
+    private static AssetBundle s_AssetBundle = null!;
+
     [InitializeOnAwake]
     public static void LoadTextures()
     {
+        s_AssetBundle = AssetBundle.LoadFromFile(Path.Combine(RTLCPlugin.Instance.WorkingDirectory, "Bundles", "rtlc.main"));
+
+        if (s_AssetBundle == null)
+        {
+            return;
+        }
+
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
@@ -21,43 +30,23 @@ internal static class ReplaceTextures
             return;
         }
 
-        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
-
-        var assetBundle = AssetBundle.LoadFromFile(Path.Combine(RTLCPlugin.Instance.WorkingDirectory, "Bundles", "rtlc.main"));
-        var mainTextureId = Shader.PropertyToID("_MainTex");
-
-        foreach (var material in Resources.FindObjectsOfTypeAll<Material>())
+        foreach (var texture in Resources.FindObjectsOfTypeAll<Texture2D>())
         {
-            if (!material.HasProperty(mainTextureId))
-            {
-                continue;
-            }
-
-            var texture = material.mainTexture as Texture2D;
-            if (texture == null)
-            {
-                continue;
-            }
-
             var name = texture.name;
             if (string.IsNullOrEmpty(name))
             {
                 continue;
             }
 
-            var newTexture = assetBundle.LoadAsset<Texture2D>(name);
+            var newTexture = s_AssetBundle.LoadAsset<Texture2D>(name);
             if (newTexture == null)
             {
                 continue;
             }
 
-            RTLCPlugin.Instance.Logger.LogInfo($"Found {texture.name} to replace");
+            RTLCPlugin.Instance.Logger.LogInfo($"Found {name} to replace");
 
-            material.mainTexture = newTexture;
-            if (newTexture.isReadable)
-            {
-                newTexture.Apply(true, true);
-            }
+            texture.LoadImage(newTexture.EncodeToPNG());
         }
     }
 }
