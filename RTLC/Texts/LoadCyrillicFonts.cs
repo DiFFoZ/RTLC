@@ -17,8 +17,8 @@ internal static class LoadCyrillicFonts
     {
         var assetBundle = AssetBundle.LoadFromFile(Path.Combine(RTLCPlugin.Instance.WorkingDirectory, "Bundles", "rtlc.font"));
 
-        var mainFont = assetBundle.LoadAsset<TMP_FontAsset>("3270_font");
-        s_TransmitFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("eduline_font");
+        var mainFont = assetBundle.LoadAsset<TMP_FontAsset>("Assets/3270_font.asset");
+        s_TransmitFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("Assets/edunline_font.asset");
 
         if (mainFont == null)
         {
