@@ -49,7 +49,7 @@ internal static class LoadCyrillicFonts
     private static TMP_FontAsset CreateVariant(TMP_FontAsset original, TMP_FontAsset dst)
     {
         var material = new Material(Shader.Find("TextMeshPro/Distance Field SSD"));
-        material.CopyPropertiesFromMaterial(original.material);
+        material.CopyMatchingPropertiesFromMaterial(original.material);
         material.shaderKeywords = original.material.shaderKeywords;
 
         material.mainTexture = dst.atlasTexture;
