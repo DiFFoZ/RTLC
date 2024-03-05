@@ -8,6 +8,7 @@ using RTLC.Helpers;
 
 namespace RTLC.Translations;
 [HarmonyPatch]
+[HarmonyPriority(Priority.LowerThanNormal)]
 internal static class Patch_LoadStringBasic
 {
     [HarmonyTargetMethods]
@@ -22,6 +23,7 @@ internal static class Patch_LoadStringBasic
         yield return AccessTools.Method(typeof(DeleteFileButton), nameof(DeleteFileButton.SetFileToDelete));
         yield return AccessTools.Method(typeof(SettingsOption), nameof(SettingsOption.ToggleEnabledImage));
         yield return AccessTools.Method(typeof(KepRemapPanel), nameof(KepRemapPanel.LoadKeybindsUI));
+        yield return AccessTools.Method(typeof(SaveFileUISlot), nameof(SaveFileUISlot.OnEnable));
 
         yield return AccessTools.Method(typeof(IngamePlayerSettings), nameof(IngamePlayerSettings.RefreshAndDisplayCurrentMicrophone));
         yield return AccessTools.Method(typeof(IngamePlayerSettings), nameof(IngamePlayerSettings.SetMicPushToTalk));

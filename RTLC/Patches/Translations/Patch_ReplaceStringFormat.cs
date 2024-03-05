@@ -7,6 +7,7 @@ using RTLC.Helpers;
 
 namespace RTLC.Translations;
 [HarmonyPatch]
+[HarmonyPriority(Priority.LowerThanNormal)]
 internal static class Patch_ReplaceStringFormat
 {
     [HarmonyTargetMethods]
