@@ -25,13 +25,11 @@ internal static class ReplaceTextOnSceneLoaded
             return;
         }
 
-        using var builder = new ZStringBuilder(false);
-
         foreach (var ui in Object.FindObjectsOfType<UIBehaviour>(true))
         {
             if (ui is TextMeshProUGUI text)
             {
-                SetCharArrayFast(text, builder);
+                text.text = Translation.GetLocalizedText(text.text);
                 continue;
             }
 
@@ -43,14 +41,5 @@ internal static class ReplaceTextOnSceneLoaded
                 }
             }
         }
-    }
-
-    public static void SetCharArrayFast(TextMeshProUGUI text, ZStringBuilder builder)
-    {
-        builder.Clear();
-        builder.Append(Translation.GetLocalizedText(text.text));
-
-        var array = builder.AsArraySegment();
-        text.SetCharArray(array.Array, array.Offset, array.Count);
     }
 }
