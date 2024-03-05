@@ -1,4 +1,7 @@
-﻿using HarmonyLib;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Reflection.Emit;
+using HarmonyLib;
 
 namespace RTLC.Translations.Specific;
 [HarmonyPatch(typeof(HUDManager))]
@@ -22,6 +25,20 @@ internal static class Patch_HUDManager_Tips
         {
             allLines[i] = Translation.GetLocalizedText(allLines[i]);
         }
+    }
+
+    [HarmonyPatch(nameof(HUDManager.ChangeControlTipMultiple))]
+    [HarmonyTranspiler]
+    public static IEnumerable<CodeInstruction> RemoveItemNameInDrop(IEnumerable<CodeInstruction> instructions)
+    {
+        var matcher = new CodeMatcher(instructions);
+
+        var itemNameField = AccessTools.Field(typeof(Item), nameof(Item.itemName));
+
+        matcher.SearchForward(c => c.LoadsField(itemNameField))
+            .SetOperandAndAdvance(AccessTools.Field(typeof(string), nameof(string.Empty)));
+
+        return matcher.InstructionEnumeration();
     }
 
     [HarmonyPatch(nameof(HUDManager.DisplayTip))]
