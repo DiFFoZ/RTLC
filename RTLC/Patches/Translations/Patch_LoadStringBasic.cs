@@ -39,8 +39,13 @@ internal static class Patch_LoadStringBasic
         yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.ApplyPenalty));
         yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.DisplayNewScrapFound));
         yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.DisplayNewDeadline));
+        yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.FillEndGameStats));
+        yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.SetShipLeaveEarlyVotesText));
+        yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.Update));
+        yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.SetSpectatingTextToPlayer));
 
         yield return AccessTools.Method(typeof(StartOfRound), nameof(StartOfRound.SetMapScreenInfoToCurrentLevel));
+        yield return AccessTools.Method(typeof(StartOfRound), nameof(StartOfRound.EndGameClientRpc));
         yield return AccessTools.EnumeratorMoveNext(AccessTools.Method(typeof(StartOfRound), nameof(StartOfRound.openingDoorsSequence)));
         yield return AccessTools.Method(typeof(StartOfRound), nameof(StartOfRound.SceneManager_OnLoad));
         yield return AccessTools.Method(typeof(StartOfRound), nameof(StartOfRound.SceneManager_OnLoadComplete1));

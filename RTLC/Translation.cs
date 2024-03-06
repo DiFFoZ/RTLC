@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using RTLC.API;
@@ -20,7 +21,6 @@ internal static partial class Translation
 
     private static readonly Dictionary<string, string> s_Translations = [];
     private static readonly Dictionary<Regex, string> s_RegexTranslations = [];
-    private static readonly HashSet<string> s_IgnoredTranslations = [];
     private static readonly CultureInfo s_RussianCultureInfo = new("ru-RU");
     private static readonly SmartFormatter s_SmartFormatter;
 
@@ -37,7 +37,7 @@ internal static partial class Translation
         var settings = new SmartSettings() { Parser = parser };
 
         s_SmartFormatter = Smart.CreateDefaultSmartFormat(settings)
-            .AddExtensions(new StringToNumberSource(), new TranslationSource(), new SelectorTextToStringSource(), new ReplaceNewLinesSource());
+            .AddExtensions(new StringToNumberSource(), new TranslationSource(), new SelectorTextToStringSource(), new ReplaceNewLinesSource(), new AppendStringSource());
 
         s_SmartFormatter.RemoveFormatterExtension<IsMatchFormatter>();
         s_SmartFormatter.AddExtensions(new IsMatchFormatterEx(), new IsMatchesFormatterEx());
@@ -146,7 +146,9 @@ internal static partial class Translation
 
     private static bool ShouldIgnoreTranslation(string? text)
     {
-        if (string.IsNullOrWhiteSpace(text) || text.Length < 3)
+        const int minLength = 3;
+
+        if (string.IsNullOrWhiteSpace(text) || text.Length < minLength)
         {
             return true;
         }
@@ -159,8 +161,8 @@ internal static partial class Translation
             return true;
         }
 
-        var @char = text[0];
-        var errorCharCount = 0;
+        var sameChar = text[0];
+        var errorCharCount = -1;
 
         foreach (var c in text.AsSpan())
         {
@@ -168,17 +170,13 @@ internal static partial class Translation
                 || c == c_CarriageReturnChar
                 || c == c_EmptySpaceChar
                 || c == c_SpaceChar
-                || c == @char
-                || (c >= (char)0x0400 && c <= (char)0x04ff) // russian chars
-                || c == 'n') // forgot to add the /
+                || c == sameChar
+                || (c >= '0' && c <= '9'))
             {
                 errorCharCount++;
-                continue;
             }
-
-            break;
         }
 
-        return errorCharCount == text.Length;
+        return (text.Length - errorCharCount) < minLength;
     }
 }

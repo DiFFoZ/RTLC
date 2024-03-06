@@ -29,5 +29,5 @@
     "Fix it to get rid of the steam": "Проверните, чтобы убрать пар",
 
     "r:Body of (.*)": "Тело {Matches[0]}",
-    "r:Cause of death: (.+)": "Причина смерти\\: ",
+    "r:Cause of death: (.+)": "Причина смерти\\: {Matches[0].Append_COD.Translate}",
 }

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using HarmonyLib;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -22,7 +23,9 @@ internal static class LoadStringPatch
                 continue;
             }
 
+
             cursor.Next.Operand = Translation.GetLocalizedText((string)cursor.Next.Operand);
+            Console.WriteLine($"Found {(string)cursor.Next.Operand} in method {context.Method.FullName}");
             cursor.Index++;
         }
     }

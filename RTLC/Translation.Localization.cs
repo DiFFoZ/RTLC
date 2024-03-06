@@ -13,9 +13,7 @@ internal static partial class Translation
     internal static string GetLocalizedText(string? key, string? originalTranslation, bool shouldIgnoreKey)
     {
         if (ShouldIgnoreTranslation(originalTranslation!)
-            || s_Translations.ContainsValue(key!)
-            || s_IgnoredTranslations.Contains(key!)
-            || s_IgnoredTranslations.Contains(originalTranslation!))
+            || s_Translations.ContainsValue(key!))
         {
             return originalTranslation!;
         }
@@ -40,21 +38,14 @@ internal static partial class Translation
 
             var matchingGroupValues = (from Group grp in match.Groups select grp.Value).Skip(1).ToList();
 
-            var formatted = s_SmartFormatter.Format(s_RussianCultureInfo, kvp.Value, new { Original = originalTranslation, Matches = matchingGroupValues });
-            s_IgnoredTranslations.Add(formatted);
-
-            return formatted;
+            return s_SmartFormatter.Format(s_RussianCultureInfo, kvp.Value, new { Original = originalTranslation, Matches = matchingGroupValues });
         }
 
-        if (shouldIgnoreKey)
+        if (!shouldIgnoreKey)
         {
-            s_IgnoredTranslations.Add(key!);
-            s_IgnoredTranslations.Add(originalTranslation!);
-
-            return originalTranslation!;
+            AddUntranslatedText(key, originalTranslation);
         }
 
-        AddUntranslatedText(key, originalTranslation);
         return originalTranslation!;
     }
 }

@@ -1,15 +1,17 @@
 {
-	"Unknown": "Неизвестно",
-	"Bludgeoning": "Избит",
-	"Gravity": "Гравитация",
-	"Blast": "Взрыв",
-	"Strangulation": "Удушение",
-	"Suffocation" : "Удушение",
-	"Mauling": "Нанесение телесных повреждений",
-	"Gunshots": "Огнестрельные ранения",
-	"Crushing": "Раздавлен",
-	"Drowning": "Утопление",
-	"Abandoned": "Брошен",
-	"Electrocution": "Удар тока",
-	"Kicking": "Удар ногой"
+	"__Добавил COD чтобы не было конфликтов": "",
+
+	"UnknownCOD": "Неизвестно",
+	"BludgeoningCOD": "Прибит",
+	"GravityCOD": "Гравитация",
+	"BlastCOD": "Взрыв",
+	"StrangulationCOD": "Сломана шея",
+	"SuffocationCOD" : "Задушен",
+	"MaulingCOD": "Разорван",
+	"GunshotsCOD": "Застрелен",
+	"CrushingCOD": "Раздавлен",
+	"DrowningCOD": "Утонул",
+	"AbandonedCOD": "Пропал",
+	"ElectrocutionCOD": "Электроудар",
+	"KickingCOD": "Избит"
 }

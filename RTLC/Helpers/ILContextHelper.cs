@@ -12,6 +12,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.Utils;
 using RTLC.Extensions;
+using Steamworks.Data;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -35,7 +36,8 @@ internal static class ILContextHelper
         typeof(FileStream),
         typeof(ConfigFile),
         typeof(ConfigDescription),
-        typeof(ES3)
+        typeof(ES3),
+        typeof(LobbyQuery)
     ];
 
     private static readonly HashSet<string> s_IgnoredTypeNames = s_IgnoredTypes
@@ -46,7 +48,11 @@ internal static class ILContextHelper
     [
         "Log",
         "SpawnPrefab",
+        "System.Boolean System.String::Equals(System.String",
+        "System.Boolean System.String::Contains(System.String"
     ];
+
+    private static readonly HashSet<int> s_Vars = [];
 
     public static bool TestIgnore(ILCursor cursor)
     {
@@ -54,6 +60,7 @@ internal static class ILContextHelper
         var shouldBeIgnored = false;
 
         var ldStringCount = 0;
+        s_Vars.Clear();
 
         for (var i = savedIndex; i < cursor.Instrs.Count; i++)
         {
@@ -64,14 +71,27 @@ internal static class ILContextHelper
                 ldStringCount++;
                 continue;
             }
-
-            if (instruction.OpCode == OpCodes.Stfld)
+            else if (instruction.OpCode == OpCodes.Stfld)
             {
                 shouldBeIgnored = true;
                 break;
             }
+            /*            else if (IsStoreLocal(instruction.OpCode))
+                        {
+                            s_Vars.Add(GetStoreOrLoadLocalIndex(instruction));
+                            continue;
+                        }
+                        else if (IsLoadLocal(instruction.OpCode))
+                        {
+                            if (s_Vars.Contains(GetStoreOrLoadLocalIndex(instruction)))
+                            {
 
-            if (!(instruction.OpCode == OpCodes.Call || instruction.OpCode == OpCodes.Callvirt))
+                                break;
+                            }
+                            shouldBeIgnored = true;
+                            break;
+                        }*/
+            else if (!(instruction.OpCode == OpCodes.Call || instruction.OpCode == OpCodes.Callvirt))
             {
                 continue;
             }
@@ -89,7 +109,8 @@ internal static class ILContextHelper
                 break;
             }
 
-            var paramsWithString = method.Parameters.Count(p => p.ParameterType.Is("System.String"));
+            var paramsWithString = method.Parameters.Any(p => p.ParameterType.Is("System.String[]")) ? 99 : 0
+                 + method.Parameters.Count(p => p.ParameterType.Is("System.String"));
             var returnIsString = method.ReturnType?.Is("System.String") ?? false;
             ldStringCount = Mathf.Clamp(ldStringCount - paramsWithString, 0, 10);
 
@@ -109,9 +130,45 @@ internal static class ILContextHelper
         return shouldBeIgnored;
     }
 
+    private static bool IsStoreLocal(OpCode opCode) => opCode == OpCodes.Stloc
+        || opCode == OpCodes.Stloc_0
+        || opCode == OpCodes.Stloc_1
+        || opCode == OpCodes.Stloc_2
+        || opCode == OpCodes.Stloc_3
+        || opCode == OpCodes.Stloc_S;
+
+    private static bool IsLoadLocal(OpCode opCode) => opCode == OpCodes.Ldloc
+        || opCode == OpCodes.Ldloc_0
+        || opCode == OpCodes.Ldloc_1
+        || opCode == OpCodes.Ldloc_2
+        || opCode == OpCodes.Ldloc_3
+        || opCode == OpCodes.Ldloc_S;
+
+    private static int GetStoreOrLoadLocalIndex(Instruction instruction)
+    {
+        var opCode = instruction.OpCode;
+
+        if (opCode == OpCodes.Stloc || opCode == OpCodes.Stloc_S
+            || opCode == OpCodes.Ldloc || opCode == OpCodes.Ldloc_S)
+        {
+            return (int)instruction.Operand;
+        }
+
+        if (opCode == OpCodes.Stloc_0 || opCode == OpCodes.Ldloc_0)
+            return 0;
+        if (opCode == OpCodes.Stloc_1 || opCode == OpCodes.Ldloc_1)
+            return 1;
+        if (opCode == OpCodes.Stloc_2 || opCode == OpCodes.Ldloc_2)
+            return 2;
+        if (opCode == OpCodes.Stloc_3 || opCode == OpCodes.Ldloc_3)
+            return 3;
+
+        return -1;
+    }
+
     public static void PatchModsPrefixesAndPostfixes(MethodBase? originalMethod, MethodInfo ilManipulatorPatch)
     {
-        if (originalMethod == null)
+        if (originalMethod == null || originalMethod.DeclaringType.Assembly == typeof(ILContextHelper).Assembly)
         {
             return;
         }
@@ -125,6 +182,11 @@ internal static class ILContextHelper
 
         foreach (var patch in patchInfo.Prefixes.Concat(patchInfo.Postfixes))
         {
+            if (patch.PatchMethod.DeclaringType.Assembly == typeof(ILContextHelper).Assembly)
+            {
+                continue;
+            }
+
             var modPatchInfo = Harmony.GetPatchInfo(patch.PatchMethod);
             if (modPatchInfo != null && modPatchInfo.Owners.Contains(MyPluginInfo.PLUGIN_GUID))
             {
@@ -142,10 +204,18 @@ internal static class ILContextHelper
 
     private static bool IsMethodIgnored(MethodReference method)
     {
+        if (method.FullName is "System.Boolean System.String::op_Inequality(System.String,System.String)"
+            or "System.Boolean System.String::op_Equality(System.String,System.String)")
+        {
+            return true;
+        }
+
         var methodName = method.Name;
+        var methodFullName = method.FullName;
         for (var j = 0; j < s_IgnoredStrings.Length; j++)
         {
-            if (methodName.StartsWith(s_IgnoredStrings[j], StringComparison.OrdinalIgnoreCase))
+            if (methodName.StartsWith(s_IgnoredStrings[j], StringComparison.OrdinalIgnoreCase)
+                || methodFullName.StartsWith(s_IgnoredStrings[j], StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }

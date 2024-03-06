@@ -7,38 +7,38 @@ internal static partial class Translation
 
     internal static string Format(string format, object arg0)
     {
-        format = GetLocalizedText(format, true);
+        format = GetLocalizedText(format);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, arg0);
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 
     internal static string Format(string format, object arg0, object arg1)
     {
-        format = GetLocalizedText(format, true);
+        format = GetLocalizedText(format);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, arg0, arg1);
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 
     internal static string Format(string format, object arg0, object arg1, object arg2)
     {
-        format = GetLocalizedText(format, true);
+        format = GetLocalizedText(format);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, arg0, arg1, arg2);
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 
     internal static string Format(string format, params object[] args)
     {
-        format = GetLocalizedText(format, true);
+        format = GetLocalizedText(format);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, args);
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 
     private static ZStringBuilder GetStringBuilder()

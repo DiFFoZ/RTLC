@@ -1,4 +1,8 @@
 {
 	"(Dead)": "(Мертв)",
-	"Tell autopilot ship to leave early : [RMB] (Hold)": "Прикажите автопилоту корабля улететь раньше : [RMB] (Удерживать)",
+	"Tell autopilot ship to leave early : [RMB] (Hold)": "Уведомить автопилот улететь раньше: [ПКМ] (Удерживайте)",
+	"({0}/{1} Votes)": "(Проголосовало \\{0\\}/\\{1\\})",
+	"Voted for ship to leave early": "Вы проголосовали за досрочное отбытие",
+
+	"(Spectating: ": "(Наблюдение: ",
 }

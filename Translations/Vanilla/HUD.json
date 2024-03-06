@@ -1,7 +1,7 @@
 {
     "SYSTEMS ONLINE": "СИСТЕМЫ АКТИВНЫ",
     "[LIFE SUPPORT: OFFLINE]": "[СИСТЕМЫ: ОТКЛЮЧЕНЫ]",
-    "CRITICAL INJURY": "КРИТИЧЕСКАЯ ТРАВМА",
+    "CRITICAL INJURY": "<size=90%>КРИТИЧЕСКАЯ ТРАВМА",
 
     "VISIBILITY LOW!\n\nSteam leak detected in area": "НИЗКАЯ ВИДИМОСТЬ!\n\nОбнаружена утечка пара",
     "RECEIVING SIGNAL": "ПОЛУЧЕНИЕ СИГНАЛА",
@@ -12,9 +12,11 @@
 
     "TOTAL:": "ВСЕГО:",
     "r:(?i)^Value: \\$([0-9]+)$": "Цена: ${Matches[0]}",
-    "(?i)Value: ???": "Цена: ???",
-    "(?i)Value: ${0}": "Цена: $\\{0\\}",
+    "Value: ???": "Цена: ???",
+    "Value: ${0}": "Цена: $\\{0\\}",
     "Value: ": "Цена: ",
+
+    "r:^(.*) collected!$": "{Matches[0]} собран",
 
     "Confirm: [V]   |   Rotate: [R]   |   Store: [X]": "Подтвердить: [B]   |   Вращать: [R]  |   На склад: [X]",
 
@@ -27,10 +29,19 @@
     "CELESTIAL BODY: ": "ОРБИТА: ",
     "HAZARD LEVEL:": "ОПАСНОСТЬ:",
 
+    "PILOT COMPUTER": "БОРТОВОЙ КОМПЬЮТЕР",
+    "WARNING!!! The autopilot ship will leave at midnight. Please return quickly." : "ВНИМАНИЕ!!! Корабль улетит в полночь. Пожалуйста, вернитесь на борт.",
+    "Warning! No response from crew, which has not returned. Emergency code activated.": "Внимание! Экипаж не отвечает и не возвращается. Активирован аварийный код.",
+    "The autopilot will now attempt to fly to the closest safe spaceport. Your items have been lost.": "Автопилот попытается долететь до ближайшего космопорта. Ваши вещи были потеряны.",
+    "Ship leaving in one hour": "Корабль улетит через один час",
+    "Alert! The autopilot is leaving due to dangerous conditions.": "Внимание! Автопилот покидает поверхность в связи с опасными условиями.",
+    "The Company must minimize risk of damage to proprietary hardware. Goodbye!": "Компания должна минимизировать риск повреждения оборудования. До свидания!",
+    "r:^WARNING! Please return by (.*)\\. A vote has been cast, and the autopilot ship will leave early.$": "ВНИМАНИЕ! Вернитесь на корабль к {Matches[0]}. Путем голосования решено, что корабль улетит на автопилоте раньше времени.",
+
     "Paycheck!": "Зарплата!",
 
-    "New creature data sent to terminal.": "Данные о новом существе отправлена на терминал.",
-    "New creature data sent to terminal!": "Данные о новом существе отправлена на терминал!",
+    "New creature data sent to terminal.": "Данные о новом организме отправлены в терминал.",
+    "New creature data sent to terminal!": "Данные о новом организме отправлены в терминал!",
 
     "Found journal entry: '": "Найден лог журнал: '",
 

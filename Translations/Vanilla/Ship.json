@@ -10,8 +10,8 @@
 
 	"DOOR HYDRAULICS:": "ГИДРАВЛИКА ШЛЮЗА:",
 
-	"r:^(?i)Orbiting: $": "Орбита: ",
-	"r:^(?i)Weather: $": "Погода: ",
+	"r:^(?i)orbiting: $": "ОРБИТА: ",
+	"r:^(?i)weather: $": "ПОГОДА: ",
 
 	"r:^POPULATION: (.+)\\nCONDITIONS: (.+)\\nFAUNA: (.+)$": "НАСЕЛЕНИЕ: {Matches[0].Translate}\nУСЛОВИЯ: {Matches[1].Translate}\nФАУНА: {Matches[2].Translate}",
 	"r:^POPULATION: (.+)\\nCONDITIONS: (.+)": "НАСЕЛЕНИЕ: {Matches[0].Translate}\nУСЛОВИЯ: {Matches[1].Translate}",

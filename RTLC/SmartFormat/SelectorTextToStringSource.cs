@@ -6,6 +6,8 @@ internal class SelectorTextToStringSource : Source
 {
     public override bool TryEvaluateSelector(ISelectorInfo selectorInfo)
     {
+        // {\"Terminal_Confirmation\".Translate}
+
         if (selectorInfo.SelectorText!.StartsWith('"')
             && selectorInfo.SelectorText.EndsWith('"'))
         {

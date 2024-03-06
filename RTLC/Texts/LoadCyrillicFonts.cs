@@ -11,6 +11,7 @@ internal static class LoadCyrillicFonts
 {
     private static TMP_FontAsset? s_TransmitFontAsset;
     private static TMP_FontAsset? s_MainFontAsset;
+    private static Shader s_FontShader = null!;
 
     // prevents crash due to StackOverflow
     private static bool s_IgnoreAwake;
@@ -22,6 +23,7 @@ internal static class LoadCyrillicFonts
 
         s_MainFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("Assets/Fonts/3270-font.asset");
         s_TransmitFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("Assets/Fonts/3716-font.asset");
+        s_FontShader = assetBundle.LoadAsset<Shader>("Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader");
 
         TMP_Settings.fallbackFontAssets.Add(s_MainFontAsset);
     }
@@ -48,7 +50,7 @@ internal static class LoadCyrillicFonts
 
     private static TMP_FontAsset CreateVariant(TMP_FontAsset original, TMP_FontAsset dst)
     {
-        var material = new Material(Shader.Find("TextMeshPro/Distance Field SSD"));
+        var material = new Material(s_FontShader);
         material.CopyMatchingPropertiesFromMaterial(original.material);
         material.shaderKeywords = original.material.shaderKeywords;
 

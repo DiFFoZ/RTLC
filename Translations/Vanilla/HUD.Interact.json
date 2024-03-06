@@ -5,9 +5,9 @@
     
     "Enter : [LMB]": "Войти : [LMB]",
     "Exit : [LMB]": "Выйти : [LMB]",
-    "Climb : [LMB]": "Подняться : [LMB]",
-    "Use ladder : [LMB]": "Подняться : [LMB]",
-    "Let go : [LMB]": "Отпустить : [LMB]",
+    "Climb : [LMB]": "Использовать лестницу : [LMB]",
+    "Use ladder : [LMB]": "Использовать лестницу : [LMB]",
+    "Let go : [LMB]": "Отпустить лестницу : [LMB]",
     "Use door : [LMB]": "Открыть/Закрыть дверь : [LMB]",
 	"Use key: [ LMB ]": "Использовать: [ ЛКМ ]",
 
@@ -23,7 +23,7 @@
     "(Cannot hold until ship has landed)": "(Невозможно взять, пока корабль не приземлится)",
     "(Requires battery-powered item)": "(Нужен предмет с аккумулятором)",
     "Locked": "Закрыто",
-    "[Wait for ship to land]": "[Подождите, пока корабль приземлится]",
+    "[Wait for ship to land]": "[Ожидание посадки корабля]",
     "Too late on moon to land!": "Слишком поздно для посадки на луну!",
 
     "[Nothing to store]": "[Нечего положить]",
@@ -45,8 +45,11 @@
     "[Cooldown: {0} sec.]": "[Перезарядка: \\{0\\} сек.]",
     "[Cooldown: ([0-9]+) sec.]": "[Перезарядка: {Matches[0]} сек.]",
 
-    "r:Change (.+)": "Изменить {Matches[0].Translate} [LMB]",
-    "suit": "костюм",
+    "r:Change (.+)": "Изменить на\\: {Matches[0].Translate} [LMB]",
+    "suit": "оранжевый костюм",
+    "Green suit": "зелёный костюм",
+    "Pajama suit": "пижамный костюм",
+    "Hazard suit": "защитный костюм",
 
     "Flush: [LMB]": "Смыть: [LMB]",
 }

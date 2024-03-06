@@ -8,12 +8,12 @@ internal static class Patch_HUDManager
 {
     [HarmonyPatch(nameof(HUDManager.SetClock))]
     [HarmonyPrefix]
-    private static bool ShowClockIn24Hour(float timeNormalized, float numberOfHours)
+    private static bool ShowClockIn24Hour(float timeNormalized, float numberOfHours, out string __result)
     {
         var minutes = (int)(timeNormalized * (60f * numberOfHours)) + 360;
         var clock = string.Format("{0:00}:{1:00}", minutes / 60, minutes % 60);
 
-        HUDManager.Instance.clockNumber.text = clock;
+        HUDManager.Instance.clockNumber.text = __result = clock;
         return false;
     }
 

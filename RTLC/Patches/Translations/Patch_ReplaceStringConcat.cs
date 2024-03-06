@@ -5,16 +5,15 @@ using MonoMod.Cil;
 using RTLC.API;
 using RTLC.Helpers;
 
-namespace RTLC.Translations;
-[HarmonyPatch]
-[HarmonyPriority(Priority.LowerThanNormal - 1)]
-internal static class Patch_ReplaceStringFormat
+namespace RTLC.Patches.Translations;
+//[HarmonyPatch]
+//[HarmonyPriority(Priority.LowerThanNormal - 1)]
+internal static class Patch_ReplaceStringConcat
 {
     [HarmonyTargetMethods]
     public static IEnumerable<MethodBase> GetPatchingMethods()
     {
-        yield return AccessTools.Method(typeof(HUDManager), nameof(HUDManager.DisplayDaysLeft));
-        yield return AccessTools.Method(typeof(TimeOfDay), nameof(TimeOfDay.UpdateProfitQuotaCurrentTime));
+        yield break;
     }
 
     [HarmonyILManipulator]
@@ -22,6 +21,6 @@ internal static class Patch_ReplaceStringFormat
     {
         ILContextHelper.PatchModsPrefixesAndPostfixes(originalMethod, LoadStringPatch.ReplaceLoadStringWithTranslatedMethod);
 
-        ReplaceStringFormatPatch.ReplaceStringFormatToTranslationFormat(context);
+        ReplaceStringConcatPatch.ReplaceStringConcatToTranslationFormat(context);
     }
 }

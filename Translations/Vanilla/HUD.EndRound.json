@@ -3,9 +3,24 @@
 	"{0} casualties: -{1}%\n({2} bodies recovered)": "\\{0\\} потерь: -\\{1\\}%\n(\\{2\\} тел возвращено)",
 	"DUE: ${0}": "ШТРАФ: $\\{0\\}",
 
-	"PERFORMANCE REPORT": "ОТЧЕТ",
+	"PERFORMANCE REPORT": "ОТЧЁТ О РАБОТЕ",
+	"Notes: \n": "Заметки: \n",
+
 	"PROFIT:": "ПРИБЫЛЬ:",
 
 	"QUOTA REACHED!": "<size=90%>КВОТА ВЫПОЛНЕНА!",
-	"OVERTIME BONUS:": "ПРЕМИЯ ЗА ОВЕРТАЙМ:",
+	"OVERTIME BONUS:": "ПРЕМИЯ:",
+
+	"Overtime bonus: ${0}": "Премия: $\\{0\\}",
+
+	"NEW PROFIT QUOTA:": "НОВАЯ КВОТА:",
+
+	"EMPLOYEE RANK": "РАНГ СОТРУДНИКА",
+	"Intern": "Интерн",
+	"Part-timer": "Временный работник",
+	"Employee": "Работник",
+	"Leader": "Лидер",
+	"Boss": "Босс",
+
+	"Stats": "Статистика",
 }
