@@ -25,6 +25,9 @@
 	"> Confirm": "> Подтвердить",
 
 	"Credits": "Благодарности",
+	"r:(?s)Thanks to PuffoThePufferfish and Blueray901165 for helping shape this game\\. They were the closest with it through the entire process, helping me test and improve it every step of the way\\.\n\nThanks to my patrons who have generously supported me throughout this game's long and sometimes-rocky development:\r\n\r\n(.*)Thanks to Zenonclaw for modelling the shovel and the old elevator, which was scrapped long ago but still used for its parts\\.\n\nThanks to ZedFox for one of the boombox tracks \\(the good one\\)\\.\n\nThanks to youreashotgun for the snare flea TV channel\\.\n\nAnd thanks to Noah, Seth, Null, Sam, Zenonclaw, Zedfox, and Joseph for helping playtest throughout early development\\.\n\n----------------------------------\nSound effects from Freesound\\.org, licensed under CC-BY \\(Attribution\\)\\. Thank you:\n\n(.*)$":
+
+	 "Спасибо PuffoThePufferfish и Blueray901165 за помощь в создании этой игры. Они были ближе всех на протяжении всего процесса, помогая мне тестировать и улучшать её на каждом этапе пути.\n\nСпасибо моим подписчикам на патреоне, которые щедро поддерживали меня на протяжении всей долгой и порой непростой разработки этой игры:\n\n{Matches[0]}Спасибо Zenonclaw за моделирование лопаты и старого лифта, который давно убран, но до сих пор используется по частям.\n\nСпасибо ZedFox за один из треков для бумбокса (хороший).\n\nСпасибо youreashotgun за телеканал «Snare Flea».\n\nИ спасибо Noah, Seth, Null, Sam, Zenonclaw, Zedfox и Joseph за помощь в тестировании на ранних этапах разработки.\n\n----------------------------------\nЗвуковые эффекты с сайта Freesound.org, под лицензией CC-BY (Атрибуция). Спасибо:\n\n{Matches[1]}",
 
 	"Loading...": "Загрузка...",
 

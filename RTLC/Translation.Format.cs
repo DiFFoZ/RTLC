@@ -7,7 +7,7 @@ internal static partial class Translation
 
     internal static string Format(string format, object arg0)
     {
-        format = GetLocalizedText(format);
+        format = GetLocalizedText(format, true);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, arg0);
@@ -16,7 +16,7 @@ internal static partial class Translation
 
     internal static string Format(string format, object arg0, object arg1)
     {
-        format = GetLocalizedText(format);
+        format = GetLocalizedText(format, true);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, arg0, arg1);
@@ -25,7 +25,7 @@ internal static partial class Translation
 
     internal static string Format(string format, object arg0, object arg1, object arg2)
     {
-        format = GetLocalizedText(format);
+        format = GetLocalizedText(format, true);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, arg0, arg1, arg2);
@@ -34,7 +34,7 @@ internal static partial class Translation
 
     internal static string Format(string format, params object[] args)
     {
-        format = GetLocalizedText(format);
+        format = GetLocalizedText(format, true);
 
         var builder = GetStringBuilder();
         builder.AppendFormat(format, args);

@@ -171,7 +171,10 @@ internal static partial class Translation
                 || c == c_EmptySpaceChar
                 || c == c_SpaceChar
                 || c == sameChar
-                || (c >= '0' && c <= '9'))
+                || (c >= 0x0 && c <= 0x3F)
+                || (c >= 0x5B && c <= 0x60)
+                || (c >= 0x7B && c <= 0x7F)
+                || (c >= 0x400 && c <= 0x4FF))
             {
                 errorCharCount++;
             }

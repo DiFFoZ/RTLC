@@ -7,7 +7,7 @@ internal static partial class Translation
         builder.Append(str0);
         builder.Append(str1);
 
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 
     public static string Concat(string str0, string str1, string str2)
@@ -17,7 +17,7 @@ internal static partial class Translation
         builder.Append(str1);
         builder.Append(str2);
 
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 
     public static string Concat(string str0, string str1, string str2, string str3)
@@ -28,7 +28,7 @@ internal static partial class Translation
         builder.Append(str2);
         builder.Append(str3);
 
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 
     public static string Concat(params string[] values)
@@ -39,6 +39,6 @@ internal static partial class Translation
             builder.Append(value);
         }
 
-        return GetLocalizedText(builder.ToString());
+        return GetLocalizedText(builder.ToString(), true);
     }
 }

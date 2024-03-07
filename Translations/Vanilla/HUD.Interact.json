@@ -42,14 +42,19 @@
     "Land ship : [LMB]": "Посадить корабль : [LMB]",
     "Disable speaker: [LMB]": "Отключить динамик: [LMB]",
 
+    "Lift glass : [LMB]": "Поднять стекло : [LMB]",
+    "Beam up : [LMB]": "Запустить : [LMB]",
     "[Cooldown: {0} sec.]": "[Перезарядка: \\{0\\} сек.]",
-    "[Cooldown: ([0-9]+) sec.]": "[Перезарядка: {Matches[0]} сек.]",
+    "r:\\[Cooldown: ([0-9]+) sec\\.\\]": "[Перезарядка: {Matches[0]} сек.]",
 
-    "r:Change (.+)": "Изменить на\\: {Matches[0].Translate} [LMB]",
+    "r:Change:? (.+)": "Изменить на\\: {Matches[0].Translate} [LMB]",
     "suit": "оранжевый костюм",
     "Green suit": "зелёный костюм",
     "Pajama suit": "пижамный костюм",
     "Hazard suit": "защитный костюм",
+    "Purple Suit": "фиолетовый костюм",
 
     "Flush: [LMB]": "Смыть: [LMB]",
+    "Pull cord: [LMB] (Hold)": "Потянуть шнур: [LMB] (Удерживайте)",
+    "Play record: [LMB]": "Воспроизвести запись: [LMB]",
 }

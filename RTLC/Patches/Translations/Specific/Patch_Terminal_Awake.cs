@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 
 namespace RTLC.Translations.Specific;
@@ -17,6 +19,8 @@ internal static class Patch_Terminal_Awake
         if (s_Initialized)
             return;
 
+        HashSet<TerminalNode> translatedNodes = [];
+
         var nodes = __instance.terminalNodes.allKeywords.SelectMany(tk =>
         {
             var nounNodes = tk.compatibleNouns?.Select(c => c.result) ?? [];
@@ -27,7 +31,7 @@ internal static class Patch_Terminal_Awake
 
         foreach (var node in nodes)
         {
-            if (node == null)
+            if (node == null || !translatedNodes.Add(node))
             {
                 continue;
             }
@@ -42,7 +46,7 @@ internal static class Patch_Terminal_Awake
 
             foreach (var option in options)
             {
-                if (option == null || option.result == null)
+                if (option == null || option.result == null || !translatedNodes.Add(option.result))
                 {
                     continue;
                 }

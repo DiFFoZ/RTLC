@@ -6,16 +6,41 @@
     "Scan : [RMB]": "Сканирование : [ПКМ]",
     "Sprint: [Shift]": "Бег: [Shift]",
     "Quit terminal : [TAB]": "Выйти из терминала : [TAB]",
-    "Toggle music : [RMB]": "Переключить музыку : [ПКМ]",
-    "Use key : [RMB]": "Использовать : [E]",
+    "Toggle music : [RMB]": "Переключить музыку : [RMB]",
+    
     "Inspect: [Z]": "Осмотреть: [Z]",
     "Turn page : [Q/E]": "Перевернуть страницу : [Q/E]",
+
     "Swing shovel : [RMB]": "Ударить : [RMB]",
     "Swing sign : [RMB]": "Ударить : [RMB]",
-    "Use airhorn : [RMB]": "Использовать : [RMB]",
-    "Ring bell: [LMB]": "Использовать: [LMB]",
-    "r:Toggle (L|l)ight : [LMB]": "Вкл/выкл : [LMB]",
+
+    "Wear mask : [RMB]": "Надеть маску : [RMB]",
+
+    "Spray : [RMB]": "Использовать : [RMB]",
+    "Shake can : [Q]": "Встряхнуть : [Q]",
+
+
+    "Fire : [RMB]": "Выстрелить : [RMB]",
+    "Reload : [E]": "Перезарядить : [E]",
+    "Turn safety on: [Q]": "Поставить на предохранитель: [Q]",
+    "Use DIY-Flashbang : [RMB]": "Use DIY-Flashbang : [RMB]",
+    
+    "Toggle laser : [RMB]": "Вкл/Выкл : [RMB]",
+    "Toggle light : [RMB]": "Вкл/выкл : [RMB]",
+
+    "Power button : [Q]": "Кнопка питания : [Q]",
+    "Send voice : [RMB]": "Использовать : [RMB]",
+
     "Use horn : [RMB]": "Использовать : [RMB]",
     "Open gift : [LMB]": "Открыть : [LMB]",
     "Use hairdryer : [RMB]": "Использовать : [RMB]",
+    "Use remote : [RMB]": "Использовать : [RMB]",
+    "Use key : [RMB]": "Использовать : [RMB]",
+    "Use airhorn : [RMB]": "Использовать : [RMB]",
+    "Ring bell: [LMB]": "Использовать: [LMB]",
+    "Use cash register : [RMB]": "Использовать : [RMB]",
+    "Pop up ladder : [RMB]": "Использовать : [RMB]",
+    "Take TZP : [RMB]": "Использовать : [RMB]",
+    "Pull pin: [RMB]": "Использовать: [RMB]",
+    "Use grenade : [RMB]": "Использовать : [RMB]",
 }

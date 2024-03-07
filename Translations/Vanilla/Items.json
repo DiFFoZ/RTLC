@@ -49,7 +49,6 @@
     "Red soda": "Содовая",
     "Steering wheel": "Руль",
     "Stop sign": "Знак \"СТОП\"",
-    "Tea kettle": "Чайник",
     "Toothpaste": "Зубная паста",
     "Toy cube": "Кубик Рубика",
     "Hive": "Улей",
@@ -71,5 +70,10 @@
     "Data chip": "Чип данных",
     "Robot Toy": "Игрушечный робот",
     "Wedding ring": "Кольцо",
-    "Double-barrel": "Двустволка"
+    "Double-barrel": "Двустволка",
+    "Apparatice": "Аппаратура",
+    "Tattered metal sheet": "Металлический лист",
+    "Tea Kettle": "Чайник",
+    "Shotgun shell": "Дробовая гильза",
+    "Gold Bar": "Золотой слиток",
 }
