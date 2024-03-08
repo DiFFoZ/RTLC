@@ -72,4 +72,7 @@
     "BROADCASTED SPECIAL CODE": "BROADCASTED SPECIAL CODE",
     "Controller disconnected": "Controller disconnected",
     "CHALLENGE RESULTS:": "CHALLENGE RESULTS:",
+    "LockedForDemo": "This is locked from the demo version!\n\n",
+    " (Locked)": " (Закрыто)",
+    "Confirm: [V]   |   Rotate: [R]   |   Store: [X]": "",
 }

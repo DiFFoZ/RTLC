@@ -23,11 +23,36 @@
     "To see the list of wildlife on record.\n\n": "Записи о существах, добавленные в базу.\n\n",
     "To access objects placed into storage.\n\n": "Получить доступ к объектам, помещенным на склад.\n\n",
     "To see the list of other commands\n\n": "Увидеть список других команд.\n\n",
-    "[numberOfItemsOnRoute]\n": "[numberOfItemsOnRoute]\n",
 
     ">MOONS\n": ">MOONS\n",
     ">STORE\n": ">STORE\n",
     ">BESTIARY\n": ">BESTIARY\n",
     ">STORAGE\n": ">STORAGE\n",
     ">OTHER\n": ">OTHER\n",
+
+    "__store MAIN": "",
+    "0_StoreHub": "{Original:ismatches(\\(.+\\n+\\)):{m:list:{Translate}|}|{Original}}",
+    "Welcome to the Company store. \n": "Добро пожаловать в магазин компании.\n",
+    "Use words BUY and INFO on any item. \n": "Используйте слова \"BUY\" и \"INFO\" на любом товаре.\n",
+    "Order tools in bulk by typing a number.\n": "Заказывайте инструменты оптом, набрав число.\n",
+    "SHIP UPGRADES:\n": "ОБНОВЛЕНИЕ КОРАБЛЯ:\n",
+    "r:^([^/]+)(\\/+ +)*(Price:)? (\\$[0-9]+)(\n*)$": "{Matches[0]}{Matches[1]}{Matches[2].Translate} {Matches[3]}{Matches[4]}",
+    "The selection of ship decor rotates per-quota. Be sure to check back next week:\n": "Каталог корабельного декора меняется каждую квоту. Обязательно загляните на следующей неделе:\n",
+    "SuitsList": "Этот список меняется после квоты. Обязательно загляните на следующей неделе!\n____________________________\n\n[unlockablesSelectionList]\n",
+
+    "Price:": "Цена:",
+    "  //  Price: $": "  //  Цена: $",
+    "   ({0}% OFF!)": "   (СКИДКА \\{0\\}%!)",
+    "[No items in stock!]": "[Нет товаров в наличии]",
+    "[No items available]": "[Нет товаров в наличии]",
+
+    "r:^You have requested to order ([\\w\\d\\s.,-]+) ?\\n?(Amount: \\[variableAmount\\]\\. \\n)?Total cost of items?: \\[totalCost\\]\\.\\n\\nPlease CONFIRM or DENY\\.\\n\\n$": "Вы запросили\\: {Matches[0].Translate}\nКоличество\\: [variableAmount].\nСтоимость\\: [totalCost].{\"Terminal_Confirmation\".Translate}",
+    "r:^Ordered (\\[variableAmount\\] )?([\\w\\d\\s-]+)(?:!|\\.|,) Your new balance is \\[playerCredits\\]\\.(\\n+.+\\n\\n.*)?$": "Вы заказали\\: {Matches[1].Translate} x[variableAmount]. Оставшиеся кредиты: [playerCredits].{Matches[2].Translate}",
+
+    "\n\nOur contractors enjoy fast, free shipping while on the job! Any purchased items will arrive hourly at your approximate location.\n\n": "\n\nНаши сотрудники пользуются быстрой и бесплатной доставкой во время работы! Все приобретённые товары будут доставлены в течение часа до вашего приблизительного местоположения.\n\n",
+    "key:Terminal_RearrangeInfo:\nPress [B] to rearrange objects in your ship and [V] to confirm.\n": "\nНажмите [B], чтобы переставить объекты на корабле, и [V], чтобы подтвердить.\n",
+    "\nPress [B] to rearrange objects in your ship and [V] to confirm.\n\n": "\nНажмите [B], чтобы переставить объекты на корабле, и [V], чтобы подтвердить.\n\n",
+    "\nPress [B] to rearrange objects in your ship and [V] to confirm.\n\nHold the cord to activate the loud horn.": "{\"Terminal_RearrangeInfo\".Translate}\nДержите шнур, чтобы вызвать громкий гудок.\n",
+    "\nPress [B] to rearrange objects in your ship and [V] to confirm.\n\nPress the button and step onto the inverse teleporter while it activates.": "{\"Terminal_RearrangeInfo\".Translate}\nНажмите на кнопку и, пока активируется инверсный телепорт, зайдите в него.\n",
+    "\nPress the button to activate the teleporter. It will teleport whoever is currently being monitored on the ship's radar. You will not be able to keep any of your held items through the teleport. It takes about 10 seconds to recharge.\n\nPress [B] to rearrange objects in your ship and [V] to confirm.": "\nНажмите на кнопку, чтобы активировать телепортатор. Он телепортирует того, кто в данный момент находится под наблюдением радара корабля. Во время телепортации вы не сможете сохранить ни один из имеющихся у вас предметов. Перезарядка занимает около 10 секунд.\n{\"Terminal_RearrangeInfo\".Translate}",
 }

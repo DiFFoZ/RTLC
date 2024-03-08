@@ -37,7 +37,12 @@ internal static partial class Translation
         var settings = new SmartSettings() { Parser = parser };
 
         s_SmartFormatter = Smart.CreateDefaultSmartFormat(settings)
-            .AddExtensions(new StringToNumberSource(), new TranslationSource(), new SelectorTextToStringSource(), new ReplaceNewLinesSource(), new AppendStringSource());
+            .AddExtensions(new StringToNumberSource(),
+            new TranslationSource(),
+            new SelectorTextToStringSource(),
+            new ReplaceNewLinesSource(),
+            new AppendStringSource(),
+            new CollectionCountSource());
 
         s_SmartFormatter.RemoveFormatterExtension<IsMatchFormatter>();
         s_SmartFormatter.AddExtensions(new IsMatchFormatterEx(), new IsMatchesFormatterEx());
@@ -156,7 +161,7 @@ internal static partial class Translation
         // probably used for keybinds and terminal vars. e.g:
         // [totalCost]
         // [playerCredits]
-        if (text.StartsWith('[') && (text.EndsWith(']') || text.EndsWith("]\n")) && text.IndexOf(c_SpaceChar) == -1)
+        if (Regex.IsMatch(text, "^\\[\\w*\\]\\n*$"))
         {
             return true;
         }

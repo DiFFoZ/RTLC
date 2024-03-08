@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace RTLC;
 internal static partial class Translation
@@ -47,5 +48,10 @@ internal static partial class Translation
         }
 
         return originalTranslation!;
+    }
+
+    class Aboba : MonoBehaviour
+    {
+
     }
 }
