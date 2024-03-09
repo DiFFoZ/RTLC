@@ -5,17 +5,18 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using RTLC.API;
+using RTLC.Extensions;
 
 namespace RTLC;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public partial class RTLCPlugin : BaseUnityPlugin
 {
-    internal static RTLCPlugin Instance { get; private set; } = null!;
+    public static RTLCPlugin Instance { get; private set; } = null!;
+
+    public new RTLCConfiguration Config { get; private set; } = null!;
 
     internal new ManualLogSource Logger { get; private set; } = null!;
-
-    internal new RTLCConfiguration Config { get; private set; } = null!;
 
     internal string WorkingDirectory { get; private set; } = null!;
 
@@ -35,7 +36,7 @@ public partial class RTLCPlugin : BaseUnityPlugin
             .Where(m => m.GetCustomAttribute<InitializeOnAwakeAttribute>() != null))
         {
             method.Invoke(null, null);
-            Logger.LogInfo($"Initialized {method.DeclaringType.Namespace}.{method.DeclaringType.Name}::{method.Name}");
+            Logger.LogInfo($"Initialized {method.GetReadableString()}");
         }
 
         Harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);

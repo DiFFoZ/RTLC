@@ -2,11 +2,11 @@
 using BepInEx.Configuration;
 
 namespace RTLC;
-internal class RTLCConfiguration
+public class RTLCConfiguration
 {
     public ConfigEntry<bool> AutoClearUntranslatedOnAwake { get; private set; }
 
-    public RTLCConfiguration()
+    internal RTLCConfiguration()
     {
         var config = (RTLCPlugin.Instance as BaseUnityPlugin).Config;
 
