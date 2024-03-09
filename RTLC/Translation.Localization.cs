@@ -49,9 +49,4 @@ internal static partial class Translation
 
         return originalTranslation!;
     }
-
-    class Aboba : MonoBehaviour
-    {
-
-    }
 }
