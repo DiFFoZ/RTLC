@@ -1,0 +1,1 @@
+https://thunderstore.io/c/lethal-company/p/Justice69/ImmersiveScraps/

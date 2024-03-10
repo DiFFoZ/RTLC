@@ -40,7 +40,7 @@
     <Copy SourceFiles="@(PublishFiles)" DestinationFolder="$(OutDir)" Condition="@(PublishFiles-&gt;Count()) != 0" />
   </Target>
 
-  <Target Name="OutputDll" AfterTargets="AfterBuild" Condition="$(IAmDiFFoZ)=='true'">
+  <Target Name="OutputDll" AfterTargets="AfterBuild" Condition="$(IAmDiFFoZ)=='true' And '$(Configuration)' == 'Debug'">
     <Copy SourceFiles="$(OutputPath)/RTLC.dll" DestinationFolder="C:/Users/$(DiFFoZ)/AppData/Roaming/r2modmanPlus-local/LethalCompany/profiles/Dev/BepInEx/plugins/DiFFoZ-Test_RTLC/RTLC" />
     <Exec Command="xcopy.exe &quot;$(ProjectDir)..\Translations&quot; &quot;C:/Users/$(DiFFoZ)/AppData/Roaming/r2modmanPlus-local/LethalCompany/profiles/Dev/BepInEx/plugins/DiFFoZ-Test_RTLC/RTLC/Translations&quot; /Y /E" />
   </Target>

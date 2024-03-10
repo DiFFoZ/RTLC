@@ -5,10 +5,11 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using RTLC.API;
+using RTLC.API.LethalExpansion;
 using RTLC.Extensions;
 
 namespace RTLC;
-
+// --- MOD GUID: RTLC
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public partial class RTLCPlugin : BaseUnityPlugin
 {
@@ -41,6 +42,10 @@ public partial class RTLCPlugin : BaseUnityPlugin
 
         Harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
         Harmony.PatchAll(typeof(RTLCPlugin).Assembly);
+
+#if DEBUG
+        LethalExpansionTranslation.TryAddScrapsToUntranslated();
+#endif
 
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
