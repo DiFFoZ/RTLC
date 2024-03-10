@@ -6,6 +6,6 @@
     "dependencies":
     [
         "BepInEx-BepInExPack-5.4.2100",
-        "DiFFoZ-SmartFormat-3.3.2"
+        "dotnet_lethal_company-SmartFormat-3.3.200"
     ]
 }
