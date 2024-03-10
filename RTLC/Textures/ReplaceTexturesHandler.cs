@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using HarmonyLib;
 using RTLC.API;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RTLC.Textures;
-internal static class ReplaceTextures
+[HarmonyPatch]
+internal static class ReplaceTexturesHandler
 {
     private static AssetBundle s_AssetBundle = null!;
+    private static readonly HashSet<int> s_UniqueTextures = [];
 
     [InitializeOnAwake]
     public static void LoadTextures()
@@ -18,24 +22,27 @@ internal static class ReplaceTextures
         {
             return;
         }
-
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
-    private static void SceneManager_sceneLoaded(Scene scene, LoadSceneMode mode)
+    [HarmonyPatch(typeof(StartOfRound), nameof(StartOfRound.Start))]
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.Last)]
+    private static void StartOfRoundLoaded()
     {
-        // wait for ship loaded scene
-        if (!scene.name.Equals("SampleSceneRelay", StringComparison.Ordinal))
-        {
-            return;
-        }
+        ReplaceTextures();
+    }
 
-        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
-
+    private static void ReplaceTextures()
+    {
         foreach (var texture in Resources.FindObjectsOfTypeAll<Texture2D>())
         {
             var name = texture.name;
             if (string.IsNullOrEmpty(name))
+            {
+                continue;
+            }
+
+            if (!s_UniqueTextures.Add(texture.GetInstanceID()))
             {
                 continue;
             }
