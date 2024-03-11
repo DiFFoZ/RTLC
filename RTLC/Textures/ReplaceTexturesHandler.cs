@@ -11,7 +11,6 @@ namespace RTLC.Textures;
 internal static class ReplaceTexturesHandler
 {
     private static AssetBundle s_AssetBundle = null!;
-    private static readonly HashSet<int> s_UniqueTextures = [];
 
     [InitializeOnAwake]
     public static void LoadTextures()
@@ -38,11 +37,6 @@ internal static class ReplaceTexturesHandler
         {
             var name = texture.name;
             if (string.IsNullOrEmpty(name))
-            {
-                continue;
-            }
-
-            if (!s_UniqueTextures.Add(texture.GetInstanceID()))
             {
                 continue;
             }
