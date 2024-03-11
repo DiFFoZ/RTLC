@@ -5,6 +5,8 @@ namespace RTLC;
 [BepInDependency(KnownPluginDependency.c_ShipLoot, BepInDependency.DependencyFlags.SoftDependency)]
 [BepInDependency(KnownPluginDependency.c_LethalExpansionCore, BepInDependency.DependencyFlags.SoftDependency)]
 [BepInDependency(KnownPluginDependency.c_LethalExpansion, BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency(KnownPluginDependency.c_LethalThings, BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency(KnownPluginDependency.c_FacilityMeltdown, BepInDependency.DependencyFlags.SoftDependency)]
 public partial class RTLCPlugin
 {
 }
