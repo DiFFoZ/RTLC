@@ -30,11 +30,15 @@ internal static class LethalExpansionTranslation
                 var tuple = (ITuple)entry.Value;
                 var modManifest = tuple[1];
 
+                Console.WriteLine($"Got mod manifest: {entry.Key}");
+
                 var scraps = (Array)AccessTools.Field(modManifest.GetType(), "scraps").GetValue(modManifest);
                 foreach (var scrap in scraps)
                 {
                     var itemName = (string)AccessTools.Field(scrap.GetType(), "itemName").GetValue(scrap);
-                    _ = Translation.GetLocalizedText(itemName);
+                    itemName = Translation.GetLocalizedText(itemName);
+
+                    Console.WriteLine("Found " + itemName);
                 }
             }
         }

@@ -1,0 +1,17 @@
+{
+	"SHIP SCANNER OVERHEAT ERROR!\nUSING LAST CACHED REPORT!\n\n": "",
+    "REPORT GENERATED... CACHED\nSCANNERS NEED <cooldown> TO COOLDOWN\n\n": "",
+    "Reactor instability at 0%\nThe reactor is in good health. No caution is necessary.\n\n": "",
+    "Reactor instability at <instability>%\nApproximately <time_left> seconds left until catastrophic nuclear event.": "",
+    "The reactor is beginning to fail. It is recommened to finish up and get ready to leave.": "",
+    "The reactor is becoming more unstable, it is about to fail. Do not leave the ship or you risk company property. Any crew memebers still outside the ship are advised to return before the reactor completly fails.": "",
+    "The reactor is failing. You have very little time remaining before a catastrophic nuclear event happens.": "",
+    "The reactor is about to cause a catastrophic nuclear event. This is your last chance. Any remaining crew members have very little time before a massive reactor fail. If there are still in the facility they most likely are not making it out, on their own.": "",
+
+ 	"... FAILED TO CONNECT TO INTERNAL FACILITY COMPUTER ... IDENTIFIYING ROOT CAUSE ...": "... НЕ УДАЛОСЬ ПОДКЛЮЧИТЬСЯ К ВНУТРЕННЕМУ КОМПЬЮТЕРУ ОБЪЕКТА ... ВЫЯВЛЕНИЕ ПРИЧИНЫ ...",
+    "UNSTABLE NUCLEAR REACTOR ... PREDICTING TIME UNTIL CATASTROPHIC EVENT ...": "НЕСТАБИЛЬНЫЙ ЯДЕРНЫЙ РЕАКТОР ... ПРОГНОЗИРОВАНИЕ ВРЕМЕНИ ДО КАТАСТРОФИЧЕСКОГО СОБЫТИЯ ...",
+    "r:<color=\"red\">(.*) MINUTES<\\/color> UNTIL CATASTROPHIC NUCLEAR REACTOR EVENT": "<color=\"red\">{Matches[0]} МИНУТЫ</color> ДО КАТАСТРОФЫ ЯДЕРНОГО РЕАКТОРА",
+
+    "The company has deemed the current levels of radiation too high.": "Компания сочла текущий уровень радиации слишком высоким.",
+    "The company can not risk damaging its equipment.": "Компания не может рисковать, повреждая свое оборудование."
+}
