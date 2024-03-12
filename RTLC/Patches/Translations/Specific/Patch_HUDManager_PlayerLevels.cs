@@ -5,6 +5,8 @@ namespace RTLC.Patches.Translations.Specific;
 [HarmonyPriority(Priority.Last)]
 internal static class Patch_HUDManager_PlayerLevels
 {
+    [HarmonyPatch]
+    [HarmonyPostfix]
     public static void TranslatePlayerLevels(HUDManager __instance)
     {
         foreach (var level in __instance.playerLevels)

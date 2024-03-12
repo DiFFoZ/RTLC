@@ -42,9 +42,7 @@ public partial class RTLCPlugin : BaseUnityPlugin
         Harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
         Harmony.PatchAll(typeof(RTLCPlugin).Assembly);
 
-#if DEBUG
         API.LethalExpansion.LethalExpansionTranslation.TryAddScrapsToUntranslated();
-#endif
 
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }

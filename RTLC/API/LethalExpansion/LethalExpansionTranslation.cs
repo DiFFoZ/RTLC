@@ -1,5 +1,4 @@
-﻿#if DEBUG
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using BepInEx.Bootstrap;
@@ -48,4 +47,3 @@ internal static class LethalExpansionTranslation
         }
     }
 }
-#endif
