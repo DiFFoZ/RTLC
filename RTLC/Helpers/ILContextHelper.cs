@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using BepInEx.Configuration;
 using BepInEx.Logging;
+using Dissonance.Extensions;
 using HarmonyLib;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -44,15 +45,21 @@ internal static class ILContextHelper
         .Select(t => t.FullName)
         .ToHashSet();
 
-    private static readonly string[] s_IgnoredStrings =
+    private static readonly HashSet<MethodInfo> s_IgnoredMethods =
     [
+        AccessTools.PropertySetter(typeof(UnityEngine.Object), nameof(UnityEngine.Object.name))
+    ];
+
+    private static readonly string[] s_IgnoredMethodsNames = s_IgnoredMethods
+        .Select(t => t.GetFullName())
+        .Concat(
+        [
         "Log",
         "SpawnPrefab",
         "System.Boolean System.String::Equals(System.String",
         "System.Boolean System.String::Contains(System.String"
-    ];
-
-    private static readonly HashSet<int> s_Vars = [];
+        ])
+        .ToArray();
 
     public static bool TestIgnore(ILCursor cursor)
     {
@@ -60,7 +67,6 @@ internal static class ILContextHelper
         var shouldBeIgnored = false;
 
         var ldStringCount = 0;
-        s_Vars.Clear();
 
         for (var i = savedIndex; i < cursor.Instrs.Count; i++)
         {
@@ -76,21 +82,6 @@ internal static class ILContextHelper
                 shouldBeIgnored = true;
                 break;
             }
-            /*            else if (IsStoreLocal(instruction.OpCode))
-                        {
-                            s_Vars.Add(GetStoreOrLoadLocalIndex(instruction));
-                            continue;
-                        }
-                        else if (IsLoadLocal(instruction.OpCode))
-                        {
-                            if (s_Vars.Contains(GetStoreOrLoadLocalIndex(instruction)))
-                            {
-
-                                break;
-                            }
-                            shouldBeIgnored = true;
-                            break;
-                        }*/
             else if (!(instruction.OpCode == OpCodes.Call || instruction.OpCode == OpCodes.Callvirt))
             {
                 continue;
@@ -128,42 +119,6 @@ internal static class ILContextHelper
         cursor.Index = savedIndex;
 
         return shouldBeIgnored;
-    }
-
-    private static bool IsStoreLocal(OpCode opCode) => opCode == OpCodes.Stloc
-        || opCode == OpCodes.Stloc_0
-        || opCode == OpCodes.Stloc_1
-        || opCode == OpCodes.Stloc_2
-        || opCode == OpCodes.Stloc_3
-        || opCode == OpCodes.Stloc_S;
-
-    private static bool IsLoadLocal(OpCode opCode) => opCode == OpCodes.Ldloc
-        || opCode == OpCodes.Ldloc_0
-        || opCode == OpCodes.Ldloc_1
-        || opCode == OpCodes.Ldloc_2
-        || opCode == OpCodes.Ldloc_3
-        || opCode == OpCodes.Ldloc_S;
-
-    private static int GetStoreOrLoadLocalIndex(Instruction instruction)
-    {
-        var opCode = instruction.OpCode;
-
-        if (opCode == OpCodes.Stloc || opCode == OpCodes.Stloc_S
-            || opCode == OpCodes.Ldloc || opCode == OpCodes.Ldloc_S)
-        {
-            return (int)instruction.Operand;
-        }
-
-        if (opCode == OpCodes.Stloc_0 || opCode == OpCodes.Ldloc_0)
-            return 0;
-        if (opCode == OpCodes.Stloc_1 || opCode == OpCodes.Ldloc_1)
-            return 1;
-        if (opCode == OpCodes.Stloc_2 || opCode == OpCodes.Ldloc_2)
-            return 2;
-        if (opCode == OpCodes.Stloc_3 || opCode == OpCodes.Ldloc_3)
-            return 3;
-
-        return -1;
     }
 
     public static void PatchModsPrefixesAndPostfixes(MethodBase? originalMethod, MethodInfo ilManipulatorPatch)
@@ -204,18 +159,18 @@ internal static class ILContextHelper
 
     private static bool IsMethodIgnored(MethodReference method)
     {
-        if (method.FullName is "System.Boolean System.String::op_Inequality(System.String,System.String)"
+        var methodFullName = method.FullName;
+        if (methodFullName is "System.Boolean System.String::op_Inequality(System.String,System.String)"
             or "System.Boolean System.String::op_Equality(System.String,System.String)")
         {
             return true;
         }
 
         var methodName = method.Name;
-        var methodFullName = method.FullName;
-        for (var j = 0; j < s_IgnoredStrings.Length; j++)
+        for (var j = 0; j < s_IgnoredMethodsNames.Length; j++)
         {
-            if (methodName.StartsWith(s_IgnoredStrings[j], StringComparison.OrdinalIgnoreCase)
-                || methodFullName.StartsWith(s_IgnoredStrings[j], StringComparison.OrdinalIgnoreCase))
+            if (methodName.StartsWith(s_IgnoredMethodsNames[j], StringComparison.OrdinalIgnoreCase)
+                || methodFullName.StartsWith(s_IgnoredMethodsNames[j], StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
