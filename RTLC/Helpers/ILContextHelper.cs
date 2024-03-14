@@ -142,6 +142,11 @@ internal static class ILContextHelper
                 continue;
             }
 
+            if (patch.PatchMethod.ReturnType != typeof(bool))
+            {
+                continue;
+            }
+
             var modPatchInfo = Harmony.GetPatchInfo(patch.PatchMethod);
             if (modPatchInfo != null && modPatchInfo.Owners.Contains(MyPluginInfo.PLUGIN_GUID))
             {

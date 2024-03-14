@@ -25,7 +25,6 @@ internal static class LoadStringPatch
 
 
             cursor.Next.Operand = Translation.GetLocalizedText((string)cursor.Next.Operand);
-            Console.WriteLine($"Found {(string)cursor.Next.Operand} in method {context.Method.FullName}");
             cursor.Index++;
         }
     }
