@@ -11,6 +11,7 @@ internal static class LoadCyrillicFonts
 {
     private static TMP_FontAsset? s_TransmitFontAsset;
     private static TMP_FontAsset? s_MainFontAsset;
+    private static TMP_FontAsset? s_MainBigFontAsset;
     private static Shader s_FontShader = null!;
 
     // prevents crash due to StackOverflow
@@ -19,9 +20,10 @@ internal static class LoadCyrillicFonts
     [InitializeOnAwake]
     public static void LoadFonts()
     {
-        var assetBundle = AssetBundle.LoadFromFile(Path.Combine(RTLCPlugin.Instance.WorkingDirectory, "Bundles", "rtlc.font"));
+        var assetBundle = AssetBundle.LoadFromFile(Path.Combine(RTLCPlugin.Instance.WorkingDirectory, "Bundles", "rtlcfont.assetbundle"));
 
-        s_MainFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("Assets/Fonts/3270-font.asset");
+        s_MainFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("Assets/Fonts/3270-Regular.asset");
+        s_MainBigFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("Assets/Fonts/3270-Big.asset");
         s_TransmitFontAsset = assetBundle.LoadAsset<TMP_FontAsset>("Assets/Fonts/3716-font.asset");
         s_FontShader = assetBundle.LoadAsset<Shader>("Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader");
 
@@ -50,6 +52,13 @@ internal static class LoadCyrillicFonts
 
     private static TMP_FontAsset CreateVariant(TMP_FontAsset original, TMP_FontAsset dst)
     {
+        if (dst == s_MainFontAsset && original.creationSettings.pointSize > 110)
+        {
+#pragma warning disable Harmony003 // Harmony non-ref patch parameters modified
+            dst = s_MainBigFontAsset!;
+#pragma warning restore Harmony003 // Harmony non-ref patch parameters modified
+        }
+
         var material = new Material(s_FontShader);
         material.CopyMatchingPropertiesFromMaterial(original.material);
         material.shaderKeywords = original.material.shaderKeywords;
